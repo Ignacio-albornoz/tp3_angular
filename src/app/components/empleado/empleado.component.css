@@ -1,0 +1,90 @@
+.example-card {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 0;
+    border-radius: 8px;
+}
+
+.example-action-buttons {
+    /*padding-bottom: 20px;*/
+  }
+  
+  .example-headers-align .mat-expansion-panel-header-description {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .example-headers-align .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+}
+
+.empleado_header_wrap{
+    background-color: #673ab7;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2%;
+    border-radius:  8px 8px 0 0;
+
+
+}
+
+.empleado_header_text{
+    margin: 0;
+    color: white;
+}
+
+.empleado_information_wrap{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 4%;
+    
+}
+
+.empleado_personal-info_expasion-panel{
+    border-bottom: 1px solid #80808024
+
+}
+
+.personal-info_expasion-panel_description{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.description{
+    padding: 8% 2% 0;
+}
+
+.action_button_wrap{
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+
+.empleado_button{
+    margin: 4px;
+    width: 3rem;
+    height: 3rem;
+
+    &:hover{
+        background-color: #563099;
+    }
+
+    >span{
+        padding: 0.5rem 0;
+    }
+}
+
+.button_delete{
+    background: #fff;
+    color:#673ab7;
+
+    &:hover{
+        background-color: #ffffffde;
+    }
+
+}

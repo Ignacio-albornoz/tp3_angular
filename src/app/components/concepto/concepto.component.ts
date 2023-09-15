@@ -22,11 +22,13 @@ export class ConceptoComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+
+    
     this.conceptoService
     .getAllConceptos()
     .subscribe(data => 
-      {
-        this.concepto = data 
+      { 
+        this.concepto = data
       }
     )
   }
