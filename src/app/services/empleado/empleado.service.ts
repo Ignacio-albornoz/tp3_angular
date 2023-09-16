@@ -14,4 +14,8 @@ export class EmpleadoService {
   getAllEmpleados(): Observable<EmpleadoModel[]>{
     return this.http.get<EmpleadoModel[]>('http://localhost:8080/empleado');
   }
+
+  getEmpleadoById(id: Number): Observable<EmpleadoModel>{
+    return this.http.get<EmpleadoModel>(`http://localhost:8080/empleado/${id}`)
+  }
 }

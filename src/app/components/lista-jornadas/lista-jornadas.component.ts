@@ -17,11 +17,11 @@ export class ListaJornadasComponent {
   constructor( private jornadaService: JornadaService){}
 
   ngOnInit(): void {
-    this.getAllEmpleados()
+    this.getAllJornadas()
   }
 
-  getAllEmpleados(){
-    this.jornadaService.getAllEmpleados().subscribe({
+  getAllJornadas(){
+    this.jornadaService.getAllJornadas().subscribe({
       next:(result: any) => {
 
         if(result as JornadaResponseModel){

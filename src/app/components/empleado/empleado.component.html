@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="empleado">
     <mat-card-header class="empleado_header_wrap">
         <mat-card-title class="empleado_header_text">{{ empleado.nombre + ' ' + empleado.apellido }}</mat-card-title>
         <mat-card-subtitle class="empleado_header_text">{{ empleado.email }}</mat-card-subtitle>
