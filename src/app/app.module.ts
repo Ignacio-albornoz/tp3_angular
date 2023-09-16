@@ -16,7 +16,8 @@ import { MatCardModule } from '@angular/material/card';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider';
-import { MatListModule } from '@angular/material/list'
+import { MatListModule } from '@angular/material/list';
+import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component'
 
 
 
@@ -27,6 +28,7 @@ import { MatListModule } from '@angular/material/list'
     ConceptoComponent,
     EmpleadoComponent,
     ListaEmpleadosComponent,
+    ListaJornadasComponent,
   ],
   imports: [
     BrowserModule,
