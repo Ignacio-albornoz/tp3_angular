@@ -1,6 +1,6 @@
 .example-card {
     max-width: 400px;
-    margin: 20px auto;
+    min-width: 320px;
     padding: 0;
     border-radius: 8px;
 }

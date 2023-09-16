@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
-import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 
 
 @Component({
@@ -9,32 +8,23 @@ import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit {
+export class EmpleadoComponent {
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   listEmpleados: EmpleadoModel[] = [];
-  loading: boolean =  true;
-
-  constructor( private empleadoService: EmpleadoService){}
-
-  ngOnInit(): void {
-    this.getAllEmpleados()
+  
+  @Input() empleado: EmpleadoModel = {
+  id: 0,
+  nroDocumento: 0,
+  nombre: '',
+  apellido: '',
+  email: '',
+  fechaNacimiento: new Date(),
+  fechaIngreso: new Date(),
+  fechaCreacion: new Date(),
   }
 
-  getAllEmpleados(){
-    this.empleadoService.getAllEmpleados().subscribe({
-      next:(result: any) => {
-        console.log(result);
-
-        if(result as EmpleadoModel){
-          this.listEmpleados = result;
-          this.loading = false;
-        }
-        
-      }
-    })
-  }
 }
 
 

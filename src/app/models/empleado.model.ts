@@ -1,13 +1,10 @@
-import { EmailValidator } from "@angular/forms";
-
 export interface EmpleadoModel{
     id: number;
     nroDocumento: number;
     nombre: String;
     apellido: String;
-    email: EmailValidator;
+    email: String;
     fechaNacimiento: Date;
-    fechaInicio: Date;
     fechaIngreso: Date;
     fechaCreacion: Date;
 }

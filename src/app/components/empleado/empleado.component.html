@@ -1,7 +1,7 @@
 <mat-card class="example-card">
     <mat-card-header class="empleado_header_wrap">
-        <mat-card-title class="empleado_header_text" *ngIf="!loading">{{ listEmpleados[0].nombre + ' ' + listEmpleados[0].apellido }}</mat-card-title>
-        <mat-card-subtitle class="empleado_header_text" *ngIf="!loading">{{ listEmpleados[0].email }}</mat-card-subtitle>
+        <mat-card-title class="empleado_header_text">{{ empleado.nombre + ' ' + empleado.apellido }}</mat-card-title>
+        <mat-card-subtitle class="empleado_header_text">{{ empleado.email }}</mat-card-subtitle>
         <button mat-fab color="primary" aria-label="Example icon button with a delete icon" class="empleado_button button_delete">
             <mat-icon>delete</mat-icon>
           </button>
@@ -19,12 +19,12 @@
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="description" *ngIf="!loading">
-                <h4 class="ng-tns-c16-1">Nombre: {{ listEmpleados[0].nombre + ' ' + listEmpleados[0].apellido }}</h4>
-                <h4>Dni: {{listEmpleados[0].nroDocumento}}</h4>
-                <h4>Fecha Nacimiento: {{listEmpleados[0].fechaNacimiento}}</h4>
-                <h4>Fecha Ingreso: {{listEmpleados[0].fechaIngreso}}</h4>
-                <h4>Fecha Creacion: {{listEmpleados[0].fechaCreacion}}</h4>
+            <div class="description">
+                <h4 class="ng-tns-c16-1">Nombre: {{ empleado.nombre + ' ' + empleado.apellido }}</h4>
+                <h4>Dni: {{empleado.nroDocumento}}</h4>
+                <h4>Fecha Nacimiento: {{empleado.fechaNacimiento}}</h4>
+                <h4>Fecha Ingreso: {{empleado.fechaIngreso}}</h4>
+                <h4>Fecha Creacion: {{empleado.fechaCreacion}}</h4>
                 <div class="action_button_wrap">
                     <button mat-fab color="primary" aria-label="Example icon button with a edit icon" class="empleado_button">
                         <mat-icon >edit</mat-icon>
