@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ConceptoModel } from 'src/app/models/concepto.model';
+import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { Observable } from 'rxjs'
-
 @Injectable({
   providedIn: 'root'
 })
-export class ConceptoService {
+export class EmpleadoService {
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getAllConceptos(): Observable<ConceptoModel[]>{
-    return this.http.get<ConceptoModel[]>('http://localhost:8080/concepto ');
+  getAllEmpleados(): Observable<EmpleadoModel[]>{
+    return this.http.get<EmpleadoModel[]>('http://localhost:8080/empleado');
   }
 }

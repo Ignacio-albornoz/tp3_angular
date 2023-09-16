@@ -18,19 +18,20 @@ export class ConceptoComponent implements OnInit {
   nombreColumnas: string[] = ['id', 'nombre', 'laborable', 'hsMinimo', 'hsMaximo'];
   
   constructor(
-    private conceptoService: ConceptoService
+    private _conceptoService: ConceptoService
   ){}
 
   ngOnInit(): void {
 
     
-    this.conceptoService
+    this._conceptoService
     .getAllConceptos()
     .subscribe(data => 
       { 
         this.concepto = data
       }
     )
+
   }
 
 }
