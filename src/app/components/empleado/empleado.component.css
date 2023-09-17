@@ -66,6 +66,9 @@
 .action_button_wrap{
     display: flex;
     justify-content: flex-end;
+    padding-top: 8px;
+    border-spacing: 0;
+    border-top: 1px solid #8080804d;
 }
 
 .jornada_action_button_wrap{
