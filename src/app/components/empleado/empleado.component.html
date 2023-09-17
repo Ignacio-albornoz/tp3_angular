@@ -1,10 +1,10 @@
-<mat-card class="example-card" *ngIf="empleado">
+<mat-card class="empleado-card" *ngIf="!loadingEmpleado">
     <mat-card-header class="empleado_header_wrap">
         <mat-card-title class="empleado_header_text">{{ empleado.nombre + ' ' + empleado.apellido }}</mat-card-title>
         <mat-card-subtitle class="empleado_header_text">{{ empleado.email }}</mat-card-subtitle>
-        <button mat-fab color="primary" aria-label="Example icon button with a delete icon" class="empleado_button button_delete">
-            <mat-icon>delete</mat-icon>
-          </button>
+        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+            <mat-icon>more_vert</mat-icon>
+        </button>
         
         
     </mat-card-header>
@@ -27,12 +27,15 @@
                 <h4>Fecha Creacion: {{empleado.fechaCreacion}}</h4>
                 <div class="action_button_wrap">
                     <button mat-fab color="primary" aria-label="Example icon button with a edit icon" class="empleado_button">
+                        <mat-icon >delete</mat-icon>
+                    </button>
+                    <button mat-fab color="primary" aria-label="Example icon button with a edit icon" class="empleado_button">
                         <mat-icon >edit</mat-icon>
                     </button>
                 </div>
             </div>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngIf="!loadingJornada">
             <mat-expansion-panel-header class="empleado_personal-info_expasion-panel">
               <mat-panel-title>
                 Jornadas
@@ -43,8 +46,9 @@
                 </mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <div class="description" >
-                <div class="action_button_wrap">
+            <div class="description-jornadas" >
+                <app-lista-jornadas [minimalListActive]="true" [minimalList]="jornadas"></app-lista-jornadas>
+                <div class="jornada_action_button_wrap">
                     <button mat-fab color="primary" aria-label="Example icon button with a add icon" class="empleado_button">
                         <mat-icon>add</mat-icon>
                     </button>

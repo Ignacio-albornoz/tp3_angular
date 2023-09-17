@@ -17,4 +17,8 @@ export class JornadaService {
   getAllJornadas(): Observable<JornadaResponseModel[]>{
     return this.http.get<JornadaResponseModel[]>('http://localhost:8080/jornada');
   }
+
+  getJornadaByEmpleadoNrDocumento(nroDocumento: Number): Observable<JornadaResponseModel>{
+    return this.http.get<JornadaResponseModel>(`http://localhost:8080/jornada?nroDocumento=${nroDocumento}`)
+  }
 }

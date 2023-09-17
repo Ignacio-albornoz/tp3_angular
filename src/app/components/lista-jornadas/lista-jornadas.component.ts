@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
@@ -9,15 +9,31 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 })
 export class ListaJornadasComponent {
 
+  @Input() minimalListActive: Boolean = false;
+  @Input() minimalList: JornadaResponseModel[] = [];
+
+
+
   listJornadas: JornadaResponseModel[] = [];
   nombreColumnas: string[] = ['id', 'nroDocumento', 'nombreCompleto', 'fecha', 'concepto', 'hsTrabajadas'];
+  nombreColumnasMinimal: string[] = ['fecha', 'concepto', 'hsTrabajadas'];
 
   loading: boolean =  true;
 
   constructor( private jornadaService: JornadaService){}
 
   ngOnInit(): void {
-    this.getAllJornadas()
+   
+    this.useInputList();
+    
+
+    console.log(this.listJornadas);
+    
+    
+  }
+  useInputList(){
+    this.minimalList.length > 0 ? this.listJornadas = this.minimalList : this.getAllJornadas()
+    this.loading = false
   }
 
   getAllJornadas(){

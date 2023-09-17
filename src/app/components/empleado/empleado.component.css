@@ -1,7 +1,8 @@
-.example-card {
-    max-width: 400px;
+.empleado-card {
+    max-width: 48vw;
     min-width: 320px;
     padding: 0;
+    margin: 16px 0  ;
     border-radius: 8px;
 }
 
@@ -58,7 +59,17 @@
     padding: 8% 2% 0;
 }
 
+.description-jornadas{
+    padding: 0;
+}
+
 .action_button_wrap{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.jornada_action_button_wrap{
+    margin-top: 8px;
     display: flex;
     justify-content: flex-end;
 }
@@ -79,7 +90,7 @@
     }
 }
 
-.button_delete{
+.button_menu{
     background: #fff;
     color:#673ab7;
 

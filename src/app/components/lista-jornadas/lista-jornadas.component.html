@@ -1,15 +1,15 @@
 <table mat-table [dataSource]="listJornadas" class="tabla_jornadas" *ngIf="!loading">
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="id" *ngIf="!minimalListActive">
       <th mat-header-cell *matHeaderCellDef> Id. </th>
       <td mat-cell *matCellDef="let jornada"> {{jornada.id}} </td>
     </ng-container>
   
-    <ng-container matColumnDef="nroDocumento">
+    <ng-container matColumnDef="nroDocumento" *ngIf="!minimalListActive">
       <th mat-header-cell *matHeaderCellDef> DNI </th>
       <td mat-cell *matCellDef="let jornada"> {{jornada.nroDocumento}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="nombreCompleto">
+    <ng-container matColumnDef="nombreCompleto" *ngIf="!minimalListActive">
       <th mat-header-cell *matHeaderCellDef> Nombre </th>
       <td mat-cell *matCellDef="let jornada"> {{ jornada.nombreCompleto }} </td>
     </ng-container>
@@ -24,13 +24,24 @@
         <td mat-cell *matCellDef="let jornada"> {{jornada.concepto}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="hsTrabajadas">
+    <ng-container matColumnDef="hsTrabajadas" *ngIf="!minimalListActive">
         <th mat-header-cell *matHeaderCellDef> Hs. Trabajadas </th>
         <td mat-cell *matCellDef="let jornada"> {{jornada.hsTrabajadas}} </td>
     </ng-container>
-    
-    <tr mat-header-row *matHeaderRowDef="nombreColumnas"></tr>
-    <tr mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
+
+    <ng-container matColumnDef="hsTrabajadas" *ngIf="minimalListActive">
+        <th mat-header-cell *matHeaderCellDef> Hs. </th>
+        <td mat-cell *matCellDef="let jornada"> {{jornada.hsTrabajadas}} </td>
+    </ng-container>
+
+    <div *ngIf="!minimalListActive">
+        <tr mat-header-row *matHeaderRowDef="nombreColumnas" ></tr>
+        <tr mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
+    </div>
+    <div *ngIf="minimalListActive">
+        <tr mat-header-row *matHeaderRowDef="nombreColumnasMinimal" ></tr>
+        <tr mat-row *matRowDef="let row; columns: nombreColumnasMinimal;"></tr>
+    </div>
 </table>
   
   
