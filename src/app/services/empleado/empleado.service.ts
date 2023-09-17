@@ -26,6 +26,5 @@ export class EmpleadoService {
 
   updateEmpleado(empleadoDTO: UpdateEmpleadoDTOModel): Observable<EmpleadoModel>{
     return this.http.put<EmpleadoModel>('http://localhost:8080/empleado', empleadoDTO)
-
   }
 }
