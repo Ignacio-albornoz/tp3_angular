@@ -62,7 +62,7 @@ export class EmpleadoComponent implements OnInit{
       return;
     }
 
-    this.jornadaService.getJornadaByEmpleadoNrDocumento(this.empleado.nroDocumento).subscribe({
+    this.jornadaService.getJornadaByNrDocumento(this.empleado.nroDocumento).subscribe({
       next:(result: any) => {
 
         if(result as JornadaResponseModel){

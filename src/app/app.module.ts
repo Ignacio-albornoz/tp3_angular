@@ -9,6 +9,7 @@ import { EmpleadoComponent } from './components/empleado/empleado.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component'; 
 
 //Material
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -17,7 +18,17 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDividerModule} from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
-import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component'
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+
+
+
+
+
+import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component';
+import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component'
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 
@@ -29,10 +40,12 @@ import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornad
     EmpleadoComponent,
     ListaEmpleadosComponent,
     ListaJornadasComponent,
+    EmpleadoFormComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    ReactiveFormsModule,
     MatTableModule,
     MatCardModule,
     MatIconModule,
@@ -41,6 +54,10 @@ import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornad
     BrowserAnimationsModule,
     MatDividerModule,
     MatListModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatInputModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
