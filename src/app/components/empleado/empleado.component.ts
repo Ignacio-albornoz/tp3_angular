@@ -2,6 +2,7 @@ import { Component, Input, OnInit, ViewChild} from '@angular/core';
 import {MatAccordion} from '@angular/material/expansion';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
@@ -40,14 +41,16 @@ export class EmpleadoComponent implements OnInit{
 
   getEmpleadoId(){
     this.empleadoService.getEmpleadoById(this.empleadoId).subscribe({
-      next:(result: any) => {
+      next:(responseDTO: ResponseDTO) => {
 
-        if(result as EmpleadoModel){
-          console.log(result);
-          this.empleado = result;
+        if(responseDTO.isSuccess){
+          this.empleado = responseDTO.response as EmpleadoModel;
           this.loadingEmpleado = false;
           this.getJornadaByEmpleadoNroDocumento()
-        } 
+        }
+        else {
+          console.error(responseDTO.message)
+        }
       },
 
       error:(e) => {

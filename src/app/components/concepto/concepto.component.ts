@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConceptoModel } from '../../models/concepto.model'
 import { ConceptoService } from 'src/app/services/concepto/concepto.service';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 
 
 
@@ -14,6 +15,7 @@ import { ConceptoService } from 'src/app/services/concepto/concepto.service';
 export class ConceptoComponent implements OnInit {
 
   concepto: ConceptoModel[] = [];
+  loading: Boolean = true;
 
   nombreColumnas: string[] = ['id', 'nombre', 'laborable', 'hsMinimo', 'hsMaximo'];
   
@@ -22,16 +24,29 @@ export class ConceptoComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+ 
+    this.getConceptos();
+  }
 
-    
+  getConceptos(){
     this._conceptoService
     .getAllConceptos()
-    .subscribe(data => 
-      { 
-        this.concepto = data
-      }
-    )
+    .subscribe({
+      next:(responseDTO: ResponseDTO) => {
 
+        if(responseDTO.isSuccess){
+          this.concepto = responseDTO.response as ConceptoModel[];
+          this.loading = false;
+        }
+        else {
+          console.error(responseDTO.message)
+        }
+      },
+
+      error:(e) => {
+        console.log(e);
+      }
+    })
   }
 
 }

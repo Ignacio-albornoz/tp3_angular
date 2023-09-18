@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { Observable } from 'rxjs'
 import { CreateEmpleadoDTOModel, UpdateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,19 +13,19 @@ export class EmpleadoService {
     private http: HttpClient
   ) { }
 
-  getAllEmpleados(): Observable<EmpleadoModel[]>{
-    return this.http.get<EmpleadoModel[]>('http://localhost:8080/empleado');
+  getAllEmpleados(): Observable<ResponseDTO>{
+    return this.http.get<ResponseDTO>('http://localhost:8080/empleado');
   }
 
-  getEmpleadoById(id: Number): Observable<EmpleadoModel>{
-    return this.http.get<EmpleadoModel>(`http://localhost:8080/empleado/${id}`)
+  getEmpleadoById(id: Number): Observable<ResponseDTO>{
+    return this.http.get<ResponseDTO>(`http://localhost:8080/empleado/${id}`)
   }
 
-  createEmpleado(empleadoDTO: CreateEmpleadoDTOModel): Observable<EmpleadoModel>{
-    return this.http.post<EmpleadoModel>('http://localhost:8080/empleado', empleadoDTO)
+  createEmpleado(empleadoDTO: CreateEmpleadoDTOModel): Observable<ResponseDTO>{
+    return this.http.post<ResponseDTO>('http://localhost:8080/empleado', empleadoDTO)
   }
 
-  updateEmpleado(empleadoDTO: UpdateEmpleadoDTOModel): Observable<EmpleadoModel>{
-    return this.http.put<EmpleadoModel>('http://localhost:8080/empleado', empleadoDTO)
+  updateEmpleado(empleadoDTO: UpdateEmpleadoDTOModel): Observable<ResponseDTO>{
+    return this.http.put<ResponseDTO>('http://localhost:8080/empleado', empleadoDTO)
   }
 }

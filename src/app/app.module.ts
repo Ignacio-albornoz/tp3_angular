@@ -6,7 +6,10 @@ import { HttpClientModule } from '@angular/common/http';
 //Components
 import { ConceptoComponent } from './components/concepto/concepto.component';
 import { EmpleadoComponent } from './components/empleado/empleado.component';
-import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component'; 
+import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
+import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component';
+import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component'
+import { JornadaFormComponent } from './components/jornada-form/jornada-form.component';
 
 //Material
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,19 +24,9 @@ import { MatListModule } from '@angular/material/list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-
-
-
-
-
-import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component';
-import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component'
-import { MatNativeDateModule } from '@angular/material/core';
-import { JornadaFormComponent } from './components/jornada-form/jornada-form.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
-
-
-
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -61,7 +54,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

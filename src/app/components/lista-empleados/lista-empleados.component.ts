@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 
 @Component({
@@ -21,18 +22,21 @@ export class ListaEmpleadosComponent implements OnInit{
 
   getAllEmpleados(){
     this.empleadoService.getAllEmpleados().subscribe({
-      next:(result: any) => {
-        
-        if(result as EmpleadoModel){
-          console.log(result);
-          this.listEmpleados = result;
-          this.loading = false;
-        } 
-      },
+      next:(responseDTO: ResponseDTO) => {
 
-      error:(e) => {
-        console.log(e);
+      if(responseDTO.isSuccess){
+        this.listEmpleados = responseDTO.response as EmpleadoModel[];
+        this.loading = false;
+
       }
+      else {
+        console.error(responseDTO.message)
+      }
+    },
+
+    error:(e) => {
+      console.log(e);
+    }
     })
   }
 }

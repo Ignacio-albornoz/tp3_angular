@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
 @Component({
@@ -38,16 +39,20 @@ export class ListaJornadasComponent {
 
   getAllJornadas(){
     this.jornadaService.getAllJornadas().subscribe({
-      next:(result: any) => {
+      next:(responseDTO: ResponseDTO) => {
 
-        if(result as JornadaResponseModel){
-          console.log(result);
-          this.listJornadas = result;
+        if(responseDTO.isSuccess){
+
+          this.listJornadas = responseDTO.response as JornadaResponseModel[];
           this.loading = false;
-        } 
-      },
 
-      error:(e: any) => {
+        }
+        else {
+          console.error(responseDTO.message)
+        }
+      },
+  
+      error:(e) => {
         console.log(e);
       }
     })

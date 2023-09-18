@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { JornadaRequestModel } from 'src/app/models/jornada-request.model';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
 
@@ -46,9 +47,16 @@ export class JornadaFormComponent {
     
     this.jornadaService.createJornada(this.jornadaRequest)
     .subscribe({
-      next:(result: any) => {
+      next:(responseDTO: ResponseDTO) => {
 
-        console.log(result);
+        if(responseDTO.isSuccess){
+          console.log('Creado');
+          console.log(responseDTO.response);
+          
+        }
+        else {
+          console.error(responseDTO.message)
+        }
         
       },
 

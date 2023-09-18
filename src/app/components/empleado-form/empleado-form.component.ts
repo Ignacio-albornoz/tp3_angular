@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
+import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 
 
@@ -48,10 +49,16 @@ export class EmpleadoFormComponent implements OnInit{
     console.log(this.empleadoCreateDto);
     this.empleadoService.createEmpleado(this.empleadoCreateDto)
     .subscribe({
-      next:(result: any) => {
+      next:(responseDTO: ResponseDTO) => {
 
-        console.log(result);
-        
+        if(responseDTO.isSuccess){
+          console.log('Creado');
+          console.log(responseDTO.response);
+          
+        }
+        else {
+          console.error(responseDTO.message)
+        }
       },
 
       error:(e) => {
