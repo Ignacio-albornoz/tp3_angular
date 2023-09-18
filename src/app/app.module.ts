@@ -29,6 +29,8 @@ import {MatInputModule} from '@angular/material/input';
 import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component';
 import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component'
 import { MatNativeDateModule } from '@angular/material/core';
+import { JornadaFormComponent } from './components/jornada-form/jornada-form.component';
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -41,6 +43,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ListaEmpleadosComponent,
     ListaJornadasComponent,
     EmpleadoFormComponent,
+    JornadaFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatFormFieldModule,
     MatNativeDateModule,
     MatInputModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

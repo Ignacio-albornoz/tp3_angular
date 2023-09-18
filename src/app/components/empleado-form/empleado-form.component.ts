@@ -1,7 +1,5 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatError } from '@angular/material/form-field';
 import { CreateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 
@@ -15,7 +13,7 @@ import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 })
 export class EmpleadoFormComponent implements OnInit{
 
-empleadoCreateDto!: CreateEmpleadoDTOModel;
+  empleadoCreateDto!: CreateEmpleadoDTOModel;
 
   //Validador DataPicker
   maxDate: Date;
@@ -25,9 +23,10 @@ empleadoCreateDto!: CreateEmpleadoDTOModel;
   constructor(private formBuilder: FormBuilder, private empleadoService: EmpleadoService){
 
     const fechaActual = Date.now();
-    const timeStamp18Year = 568000253700;
-    
-    this.menorDeDeEdadDate = new Date(fechaActual - timeStamp18Year);
+    const TIMPESTAMP_18_YEAR = 568000253700;
+    //Se le resta 18 anios a la fecha actual
+    this.menorDeDeEdadDate = new Date(fechaActual - TIMPESTAMP_18_YEAR);
+
     this.maxDate = new Date(fechaActual);
   }
 
@@ -35,7 +34,7 @@ empleadoCreateDto!: CreateEmpleadoDTOModel;
 
   ngOnInit(): void {
     this.empleadoForm = this.formBuilder.group({
-      nroDocumento: ['', [Validators.required, Validators.min(1)]], 
+      nroDocumento: ['', [Validators.required, Validators.min(1000000)]], 
       nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], 
       apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       email: ['', [Validators.required, Validators.email]], 

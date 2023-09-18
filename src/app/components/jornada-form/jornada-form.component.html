@@ -1,0 +1,49 @@
+<mat-card class="form-card">
+    <mat-card-header class="header_wrap">
+      <mat-card-title class="header_text">Crear Usuario</mat-card-title>
+      <mat-card-subtitle class="header_text">Formulario de creacion de usuarios</mat-card-subtitle>
+    </mat-card-header>
+    <div class="form-container">
+      <form [formGroup]="jornadaForm" (ngSubmit)="onSubmit()"> 
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Empleado ID</mat-label> 
+          <input matInput type="number" formControlName="idEmpleado" > 
+          <mat-error *ngIf="jornadaForm.get('idEmpleado')?.invalid && jornadaForm.get('idEmpleado')?.touched"> 
+            <span *ngIf="jornadaForm.get('idEmpleado')?.hasError('required')">El id empleado es obligatorio.</span>
+            <span *ngIf="jornadaForm.get('idEmpleado')?.hasError('min')">El id empleado debe ser mayor o igual a 1.</span>
+            <span *ngIf="jornadaForm.get('idEmpleado')?.hasError('noExisteEmpleado')">Ya existe un empleado con el documento ingresado.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+            <mat-label>Selecciona un concepto*</mat-label>
+              <mat-select [(value)]="conceptoIdSelected">
+                  <mat-option [value]="1">Turno Normal</mat-option>
+                  <mat-option [value]="2">Turno Extra</mat-option>
+                  <mat-option [value]="3">Dia Libre</mat-option>
+
+                </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+            <mat-label>Horas Trabajadas</mat-label> 
+            <input matInput type="number" formControlName="hsTrabajadas" >
+            <mat-error *ngIf="jornadaForm.get('hsTrabajadas')?.invalid && jornadaForm.get('hsTrabajadas')?.touched"> 
+              <span *ngIf="jornadaForm.get('hsTrabajadas')?.hasError('required')">Horas trabajadas es obligatorio, para el</span>
+            </mat-error>
+        </mat-form-field>
+    
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Fecha</mat-label> 
+          <input matInput [matDatepicker]="picker2" [max]="maxDate" formControlName="fecha"> 
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle> 
+          <mat-datepicker #picker2></mat-datepicker> 
+          <mat-error *ngIf="jornadaForm.get('fecha')?.invalid && jornadaForm.get('fecha')?.touched"> 
+            <span *ngIf="jornadaForm.get('fecha')?.hasError('required')">La fecha es obligatoria.</span>
+            <span *ngIf="jornadaForm.get('fecha')?.hasError('fechaFutura')">La fecha no puede ser posterior al día de la fecha.</span>
+          </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="jornadaForm.invalid" class="form-submit-button">Enviar</button>
+      </form>
+    </div>
+  </mat-card>
+    
+  
