@@ -4,6 +4,9 @@ import { JornadaRequestModel } from 'src/app/models/jornada-request.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
+import {MatSnackBar} from '@angular/material/snack-bar';
+
+
 
 @Component({
   selector: 'app-jornada-form',
@@ -21,7 +24,7 @@ export class JornadaFormComponent {
   //Validador DataPicker
   maxDate: Date;
 
-  constructor(private formBuilder: FormBuilder, private jornadaService: JornadaService){
+  constructor(private formBuilder: FormBuilder, private jornadaService: JornadaService, private _snackBar: MatSnackBar){
 
     const fechaActual = Date.now();
 
@@ -37,6 +40,11 @@ export class JornadaFormComponent {
       fecha: ['', [Validators.required]],
       hsTrabajadas:  ['', [Validators.required,]],
     });
+  }
+
+  ErrorMessage(message: string, action: string) {
+    this._snackBar.open(message, action);
+    
   }
 
   onSubmit() {
@@ -56,14 +64,18 @@ export class JornadaFormComponent {
         }
         else {
           console.error(responseDTO.message)
+          responseDTO.message.map( message => this.ErrorMessage(message, 'OK'))
         }
         
       },
 
-      error:(e) => {
-        console.log(e);
+      error:(error) => {
+        console.log(error.error.message);
+        this.ErrorMessage(error.error.message, 'OK')
       }
     })
   }
+
+  
 
 }
