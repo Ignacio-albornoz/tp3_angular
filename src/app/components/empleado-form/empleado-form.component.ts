@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CreateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
+import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 
 
 
@@ -21,7 +22,7 @@ export class EmpleadoFormComponent implements OnInit{
   menorDeDeEdadDate: Date;
 
 
-  constructor(private formBuilder: FormBuilder, private empleadoService: EmpleadoService){
+  constructor(private formBuilder: FormBuilder, private empleadoService: EmpleadoService, private errorMessageService: ErrorMessageService){
 
     const fechaActual = Date.now();
     const TIMPESTAMP_18_YEAR = 568000253700;
@@ -52,17 +53,18 @@ export class EmpleadoFormComponent implements OnInit{
       next:(responseDTO: ResponseDTO) => {
 
         if(responseDTO.isSuccess){
+          
           console.log('Creado');
           console.log(responseDTO.response);
           
         }
         else {
-          console.error(responseDTO.message)
+          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
       },
 
       error:(e) => {
-        console.log(e);
+        this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
   }

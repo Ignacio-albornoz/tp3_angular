@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { JornadaRequestModel } from 'src/app/models/jornada-request.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
+import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
-
-import {MatSnackBar} from '@angular/material/snack-bar';
-
 
 
 @Component({
@@ -24,7 +23,7 @@ export class JornadaFormComponent {
   //Validador DataPicker
   maxDate: Date;
 
-  constructor(private formBuilder: FormBuilder, private jornadaService: JornadaService, private _snackBar: MatSnackBar){
+  constructor(private formBuilder: FormBuilder, private jornadaService: JornadaService, private errorMessageService: ErrorMessageService){
 
     const fechaActual = Date.now();
 
@@ -40,11 +39,6 @@ export class JornadaFormComponent {
       fecha: ['', [Validators.required]],
       hsTrabajadas:  ['', [Validators.required,]],
     });
-  }
-
-  ErrorMessage(message: string, action: string) {
-    this._snackBar.open(message, action);
-    
   }
 
   onSubmit() {
@@ -63,19 +57,15 @@ export class JornadaFormComponent {
           
         }
         else {
-          console.error(responseDTO.message)
-          responseDTO.message.map( message => this.ErrorMessage(message, 'OK'))
+          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
         
       },
 
-      error:(error) => {
-        console.log(error.error.message);
-        this.ErrorMessage(error.error.message, 'OK')
+      error:(e) => {
+        this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
   }
-
-  
 
 }

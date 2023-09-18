@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
-import { ConceptoModel } from 'src/app/models/concepto.model';
 import { Observable } from 'rxjs'
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 

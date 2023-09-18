@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
+import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
+
 
 @Component({
   selector: 'app-lista-jornadas',
@@ -21,7 +23,7 @@ export class ListaJornadasComponent {
 
   loading: boolean =  true;
 
-  constructor( private jornadaService: JornadaService){}
+  constructor( private jornadaService: JornadaService, private errorMessageService: ErrorMessageService){}
 
   ngOnInit(): void {
    
@@ -48,13 +50,14 @@ export class ListaJornadasComponent {
 
         }
         else {
-          console.error(responseDTO.message)
+          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
-      },
-  
-      error:(e) => {
-        console.log(e);
-      }
+        
+        },
+        
+        error:(e) => {
+        this.errorMessageService.ErrorMessage(e.error.message)
+        }
     })
   }
 

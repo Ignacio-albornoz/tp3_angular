@@ -2,4 +2,4 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-.mat-snack-bar-container{ max-width: 80vw !important;}
+.mat-snack-bar-container{ max-width: 80vw !important; min-width: 60vw !important; font-size: 1.2rem !important;}

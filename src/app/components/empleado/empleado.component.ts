@@ -4,6 +4,7 @@ import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
+import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
 @Component({
@@ -23,7 +24,7 @@ export class EmpleadoComponent implements OnInit{
   loadingJornada: boolean = true;
 
 
-  constructor( private empleadoService: EmpleadoService, private jornadaService: JornadaService){}
+  constructor( private empleadoService: EmpleadoService, private jornadaService: JornadaService, private errorMessageService: ErrorMessageService){}
 
   ngOnInit(): void {
 
@@ -49,12 +50,16 @@ export class EmpleadoComponent implements OnInit{
           this.getJornadaByEmpleadoNroDocumento()
         }
         else {
-          console.error(responseDTO.message)
+          console.log(responseDTO);
+          
+          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
       },
 
       error:(e) => {
         console.log(e);
+
+        this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
   }
@@ -66,17 +71,21 @@ export class EmpleadoComponent implements OnInit{
     }
 
     this.jornadaService.getJornadaByNrDocumento(this.empleado.nroDocumento).subscribe({
-      next:(result: any) => {
+      next:(responseDTO: ResponseDTO) => {
 
-        if(result as JornadaResponseModel){
-          console.log(result);
-          this.jornadas = result;
+        if(responseDTO.isSuccess){
+
+          console.log(responseDTO.response);
+          this.jornadas = responseDTO.response as JornadaResponseModel[];
           this.loadingJornada = false;
         } 
+        else {
+          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
+        }
       },
 
       error:(e) => {
-        console.log(e);
+        this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
   }
