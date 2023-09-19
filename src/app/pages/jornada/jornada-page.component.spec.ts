@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import EmpleadoComponent from './empleado.component';
+import { JornadaPageComponent } from './jornada-page.component';
 
-describe('EmpleadoComponent', () => {
-  let component: EmpleadoComponent;
-  let fixture: ComponentFixture<EmpleadoComponent>;
+describe('JornadaPageComponent', () => {
+  let component: JornadaPageComponent;
+  let fixture: ComponentFixture<JornadaPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmpleadoComponent ]
+      declarations: [ JornadaPageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EmpleadoComponent);
+    fixture = TestBed.createComponent(JornadaPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

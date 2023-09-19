@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
+
 import {MatAccordion} from '@angular/material/expansion';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
@@ -6,18 +7,17 @@ import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
-import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 
 @Component({
   selector: 'app-empleado',
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit{
+export class EmpleadoComponent implements OnInit, OnChanges{
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
   
-  @Input() empleadoId: Number = 99;
+  @Input() empleadoId: number = 99;
 
   empleado!: EmpleadoModel;
   jornadas!: JornadaResponseModel[];
@@ -30,26 +30,21 @@ export class EmpleadoComponent implements OnInit{
     private empleadoService: EmpleadoService,
     private jornadaService: JornadaService,
     private errorMessageService: ErrorMessageService,
-    private dialogoService: DialogosService
 
-       ){}
+  ){}
+  
+  ngOnChanges() {
+    this.getEmpleadoId
+  }
 
   ngOnInit(): void {
-
-    //No disponible sin routing?
-    /* if (this.empleadoId == 0){
-      this.route.params.subscribe(
-        params => {
-        this.empleadoId = params['id']; // Obtenemos el valor del parametro id
-        console.log(this.empleadoId);
-      });
-    } */
 
     this.getEmpleadoId();
   } 
 
   getEmpleadoId(){
-    this.empleadoService.getEmpleadoById(this.empleadoId).subscribe({
+    this.empleadoService.getEmpleadoById(this.empleadoId)
+    .subscribe({
       next:(responseDTO: ResponseDTO) => {
 
         if(responseDTO.isSuccess){
