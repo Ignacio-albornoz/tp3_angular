@@ -16,7 +16,7 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 export class ConceptoComponent implements OnInit {
 
   concepto: ConceptoModel[] = [];
-  loading: Boolean = true;
+  loading: boolean = true;
 
   nombreColumnas: string[] = ['id', 'nombre', 'laborable', 'hsMinimo', 'hsMaximo'];
   

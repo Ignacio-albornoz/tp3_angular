@@ -1,0 +1,18 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="menu de acciones para empleados" [class]="menuIconColor">
+    <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="deleteEmpleado()">
+        <mat-icon>delete</mat-icon>
+        <span>Borrar empleado</span>
+    </button>
+    <button mat-menu-item>
+        <mat-icon>edit</mat-icon>
+        <span>Editar empleado</span>
+    </button>
+    <button mat-menu-item disabled>
+        <mat-icon>calendar_month</mat-icon>
+        <span>Agregar Jornadas</span>
+    </button>
+</mat-menu>
+  

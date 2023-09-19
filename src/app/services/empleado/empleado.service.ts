@@ -28,4 +28,8 @@ export class EmpleadoService {
   updateEmpleado(empleadoDTO: UpdateEmpleadoDTOModel): Observable<ResponseDTO>{
     return this.http.put<ResponseDTO>('http://localhost:8080/empleado', empleadoDTO)
   }
+
+  deleteEmpleado(id: Number): Observable<Object>{
+    return this.http.delete(`http://localhost:8080/empleado/${id}`)
+  }
 }

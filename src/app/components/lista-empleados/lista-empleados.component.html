@@ -33,6 +33,15 @@
         <th mat-header-cell *matHeaderCellDef> Fecha Creacion </th>
         <td mat-cell *matCellDef="let empleado"> {{empleado.fechaCreacion}} </td>
     </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let empleado">
+        <div *ngIf="empleado">
+          <app-empleado-menu (handlerClickDelete)="borrarEmpleadoDeLista(empleado.id)" [idEmpleado]="empleado.id"></app-empleado-menu>
+        </div>
+      </td>
+  </ng-container>
     
     <tr mat-header-row *matHeaderRowDef="nombreColumnas"></tr>
     <tr mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>

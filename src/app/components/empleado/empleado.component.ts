@@ -6,6 +6,7 @@ import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
+import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 
 @Component({
   selector: 'app-empleado',
@@ -24,7 +25,14 @@ export class EmpleadoComponent implements OnInit{
   loadingJornada: boolean = true;
 
 
-  constructor( private empleadoService: EmpleadoService, private jornadaService: JornadaService, private errorMessageService: ErrorMessageService){}
+  constructor( 
+    
+    private empleadoService: EmpleadoService,
+    private jornadaService: JornadaService,
+    private errorMessageService: ErrorMessageService,
+    private dialogoService: DialogosService
+
+       ){}
 
   ngOnInit(): void {
 
@@ -89,6 +97,7 @@ export class EmpleadoComponent implements OnInit{
       }
     })
   }
+
 }
 
 

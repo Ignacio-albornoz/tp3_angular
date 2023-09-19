@@ -10,6 +10,8 @@ import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empl
 import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component';
 import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component'
 import { JornadaFormComponent } from './components/jornada-form/jornada-form.component';
+import { EmpleadoMenuComponent } from './components/empleado-menu/empleado-menu.component';
+
 
 //Material
 import { ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +29,10 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogoComponent } from './components/dialogo/dialogo.component';
+
 
 @NgModule({
   declarations: [
@@ -37,6 +43,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     ListaJornadasComponent,
     EmpleadoFormComponent,
     JornadaFormComponent,
+    EmpleadoMenuComponent,
+    DialogoComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +63,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatNativeDateModule,
     MatInputModule,
     MatSelectModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

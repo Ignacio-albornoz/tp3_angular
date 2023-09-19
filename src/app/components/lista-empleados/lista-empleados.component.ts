@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
+import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 
@@ -12,10 +13,14 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 export class ListaEmpleadosComponent implements OnInit{
 
   listEmpleados: EmpleadoModel[] = [];
-  nombreColumnas: string[] = ['id', 'nroDocumento', 'nombre', 'email', 'fechaNacimiento', 'fechaIngreso', 'fechaCreacion' ];
+  nombreColumnas: string[] = ['id', 'nroDocumento', 'nombre', 'email', 'fechaNacimiento', 'fechaIngreso', 'fechaCreacion', 'action' ];
   loading: boolean =  true;
+  index: number = 0;
 
-  constructor( private empleadoService: EmpleadoService, private errorMessageService: ErrorMessageService){}
+
+  constructor( private empleadoService: EmpleadoService,
+    private errorMessageService: ErrorMessageService,
+  ){}
 
   ngOnInit(): void {
     this.getAllEmpleados()
@@ -41,6 +46,14 @@ export class ListaEmpleadosComponent implements OnInit{
       }
     })
   }
+
+  borrarEmpleadoDeLista(id: number) {
+    this.listEmpleados = this.listEmpleados.filter(empleado => empleado.id !== id);
+    console.log(this.listEmpleados);
+    
+  }
+
+  
 }
 
 
