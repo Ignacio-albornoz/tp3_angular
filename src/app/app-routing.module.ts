@@ -4,6 +4,7 @@ import { RouterModule, Routes} from "@angular/router"
 import { HomePageComponent } from "./pages/home/home-page.component";
 import { EmpleadoPageComponent } from "./pages/empleado/empleado-page.component";
 import { JornadaPageComponent } from "./pages/jornada/jornada-page.component";
+import { NewEmpleadosPageComponent } from "./pages/new-empleados/new-empleados-page.component";
 
 const routes: Routes = [
     {
@@ -11,6 +12,9 @@ const routes: Routes = [
     },
     {
         path: 'empleado/:id', component: EmpleadoPageComponent
+    },
+    {
+        path: 'empleado', component: NewEmpleadosPageComponent
     },
     {
         path: 'jornada', component: JornadaPageComponent

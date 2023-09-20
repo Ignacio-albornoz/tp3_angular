@@ -1,0 +1,21 @@
+.page-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 86%;
+    gap: 8px;
+    padding: 2%;
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.jornada-form_wrap{
+    margin-top: 24px;
+}
+
+.jornadas-wrap{
+    width: 94%;
+    margin: 4% 0;
+    padding: 4% 4%;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.099), 0 4px 5px 1px #00000018, 0 3px 7px 2px #0000001f;
+}

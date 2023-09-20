@@ -1,2 +1,10 @@
-<app-jornada-form *ngIf="!loading" [empleadoId]="empleadoId"></app-jornada-form>
-<app-lista-jornadas></app-lista-jornadas>
+<div class="page-container" >
+    <div class="jornadas-wrap">
+        <h2 class="table-title" >Jornadas</h2>
+        <app-lista-jornadas></app-lista-jornadas>
+    </div>
+    <div class="jornada-form_wrap">
+        <app-jornada-form *ngIf="!loading" [empleadoId]="empleadoId"></app-jornada-form>
+    </div>
+
+</div>

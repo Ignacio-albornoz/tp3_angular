@@ -19,11 +19,13 @@ import { DialogoComponent } from './components/dialogo/dialogo.component';
 import { HomePageComponent } from "./pages/home/home-page.component";
 import { EmpleadoPageComponent } from "./pages/empleado/empleado-page.component";
 import { JornadaPageComponent } from "./pages/jornada/jornada-page.component";
+import { EmpleadoFormUpdateComponent } from './components/empleado-form-update/empleado-form-update.component';
+import { LayoutComponent } from './components/layout/layout.component';
+import { NewEmpleadosPageComponent } from './pages/new-empleados/new-empleados-page.component';
 
 //Shareds
 import { SharedModule } from './shared/shared.module';
-import { EmpleadoFormUpdateComponent } from './components/empleado-form-update/empleado-form-update.component';
-import { LayoutComponent } from './components/layout/layout.component';
+
 
 
 @NgModule({
@@ -42,6 +44,7 @@ import { LayoutComponent } from './components/layout/layout.component';
     DialogoComponent,
     EmpleadoFormUpdateComponent,
     LayoutComponent,
+    NewEmpleadosPageComponent,
     
   ],
   imports: [
