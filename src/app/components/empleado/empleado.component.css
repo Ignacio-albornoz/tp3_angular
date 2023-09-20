@@ -32,8 +32,12 @@
 }
 
 .empleado_header_text{
-    margin: 0;
+    margin: 4px 0;
     color: white;
+}
+
+.header_title{
+   margin: 8px 0;
 }
 
 
@@ -108,6 +112,8 @@
     }
 
 }
+
+
 
 .jornada_text{
     color: rgba(0,0,0,.54);

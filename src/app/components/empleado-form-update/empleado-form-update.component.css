@@ -45,6 +45,10 @@
     color: white;
 }
 
+.header_title{
+    margin: 8px 0;
+ }
+
 
 .form-input{
     width: 100%;
