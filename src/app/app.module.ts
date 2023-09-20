@@ -23,6 +23,7 @@ import { JornadaPageComponent } from "./pages/jornada/jornada-page.component";
 //Shareds
 import { SharedModule } from './shared/shared.module';
 import { EmpleadoFormUpdateComponent } from './components/empleado-form-update/empleado-form-update.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { EmpleadoFormUpdateComponent } from './components/empleado-form-update/e
     EmpleadoMenuComponent,
     DialogoComponent,
     EmpleadoFormUpdateComponent,
+    LayoutComponent,
     
   ],
   imports: [

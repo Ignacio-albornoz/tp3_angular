@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
-import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
 @Component({
   selector: 'app-empleado-menu',

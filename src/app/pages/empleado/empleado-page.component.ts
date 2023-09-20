@@ -12,10 +12,13 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 })
 export class EmpleadoPageComponent implements OnInit{
 
+  /**Se encarga de mostrar o no el formulario de Updates */
   mostrarUpdateForm: boolean = false;
 
-  empleadoId: number = 0;
+  /**empleado se pasa por input a sus clases hijas */
   empleado!: EmpleadoModel;
+  empleadoId: number = 0;
+
   loadingEmpleado: boolean = true;
 
   constructor(
@@ -69,6 +72,7 @@ export class EmpleadoPageComponent implements OnInit{
 
   /* Outputs Handles */
 
+  /**Trae los cambios realizados en update-form y los guarda en empleado */
   handleOnChageEmpleado(event: EmpleadoModel){
     this.loadingEmpleado = true;
     this.empleado = event

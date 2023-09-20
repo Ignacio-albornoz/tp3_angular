@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 
 @NgModule({
   declarations: [],
@@ -38,7 +40,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSnackBarModule,
     MatMenuModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
+    MatToolbarModule
   ],
   exports: [
     MatTableModule,
@@ -57,7 +60,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSnackBarModule,
     MatMenuModule,
     MatDialogModule,
-    CommonModule
+    CommonModule,
+    MatToolbarModule
   ]
 })
 export class SharedModule { }
