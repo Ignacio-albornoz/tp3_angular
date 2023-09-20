@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
+import { JornadaService } from 'src/app/services/jornada/jornada.service';
 
 @Component({
   selector: 'app-empleado-menu',
@@ -12,7 +13,10 @@ export class EmpleadoMenuComponent implements OnInit{
 
   @Input() idEmpleado!: number; 
 
+  @Input() nroDocumento!: number;
+
   @Output() handlerClickDelete = new EventEmitter<void>(); // declarar el evento de salida
+
 
   menuIconColor: String = 'menu-icon';
 
@@ -24,7 +28,8 @@ export class EmpleadoMenuComponent implements OnInit{
 
   deleteEmpleado(){
 
-    this.dialogoService.openDialog(this.idEmpleado)
+    this.dialogoService.openDialog(this.idEmpleado, this.nroDocumento)
+
     this.handlerClickDelete.emit();
  
   }

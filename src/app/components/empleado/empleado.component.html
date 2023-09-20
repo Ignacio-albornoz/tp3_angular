@@ -1,12 +1,12 @@
-<mat-card class="empleado-card" *ngIf="!loadingEmpleado">
+<mat-card class="empleado-card">
     <mat-card-header class="empleado_header_wrap">
         <mat-card-title class="empleado_header_text">{{ empleado.nombre + ' ' + empleado.apellido }}</mat-card-title>
         <mat-card-subtitle class="empleado_header_text">{{ empleado.email }}</mat-card-subtitle>
-        <app-empleado-menu [colorWhite]="true" ></app-empleado-menu>
+        <app-empleado-menu (handlerClickDelete)="borrarEmpleado()" [colorWhite]="true" [nroDocumento]="empleado.nroDocumento" [idEmpleado]="empleado.id"></app-empleado-menu>
         
     </mat-card-header>
     <mat-card-content class="empleado_information_wrap">
-        <mat-expansion-panel>
+        <mat-expansion-panel [expanded]="true">
             <mat-expansion-panel-header class="empleado_personal-info_expasion-panel">
               <mat-panel-title>
                 Empleado
@@ -23,10 +23,10 @@
                 <h4>Fecha Ingreso: {{empleado.fechaIngreso}}</h4>
                 <h4>Fecha Creacion: {{empleado.fechaCreacion}}</h4>
                 <div class="action_button_wrap">
-                    <button mat-fab color="primary" aria-label="Example icon button with a edit icon" class="empleado_button">
+                    <button mat-fab color="primary" (click)="borrarEmpleado()" aria-label="icon button delete" class="empleado_button">
                         <mat-icon >delete</mat-icon>
                     </button>
-                    <button mat-fab color="primary" aria-label="Example icon button with a edit icon" class="empleado_button">
+                    <button mat-fab color="primary" aria-label="icon button edit" class="empleado_button">
                         <mat-icon >edit</mat-icon>
                     </button>
                 </div>
@@ -44,9 +44,15 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="description-jornadas" >
-                <app-lista-jornadas [minimalListActive]="true" [minimalList]="jornadas"></app-lista-jornadas>
+                <app-lista-jornadas *ngIf="jornadas.length > 0; else noJornadas" [minimalListActive]="true" [minimalList]="jornadas"></app-lista-jornadas>
+                
+                <ng-template #noJornadas>
+                  <mat-card-subtitle class="jornada_text">No se agregaron Jornadas!</mat-card-subtitle>
+
+                </ng-template>
+
                 <div class="jornada_action_button_wrap">
-                    <button mat-fab color="primary" aria-label="Example icon button with a add icon" class="empleado_button">
+                    <button mat-fab color="primary" aria-label="Example icon button with a add icon" class="empleado_button" (click)="navigationJornada()">
                         <mat-icon>add</mat-icon>
                     </button>
                 </div>

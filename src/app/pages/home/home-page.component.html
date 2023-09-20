@@ -1,4 +1,4 @@
-<app-lista-empleados></app-lista-empleados>
+<app-lista-empleados *ngIf="!loading" [listEmpleados]="listEmpleados"></app-lista-empleados>
 <app-lista-jornadas></app-lista-jornadas>
 <app-concepto></app-concepto>
 

@@ -14,6 +14,9 @@ const routes: Routes = [
     },
     {
         path: 'jornada', component: JornadaPageComponent
+    },
+    {
+        path: 'jornada/:id', component: JornadaPageComponent
     }
 ];
 

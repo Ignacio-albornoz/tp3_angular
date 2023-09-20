@@ -1,75 +1,54 @@
-import { Component, Input, OnInit, ViewChild, OnChanges} from '@angular/core';
+import { Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Router } from '@angular/router';
 
 import {MatAccordion} from '@angular/material/expansion';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
-import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
+import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
+
 
 @Component({
   selector: 'app-empleado',
   templateUrl: './empleado.component.html',
   styleUrls: ['./empleado.component.css']
 })
-export class EmpleadoComponent implements OnInit, OnChanges{
+export class EmpleadoComponent implements OnInit {
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
   
-  @Input() empleadoId: number = 99;
-
-  empleado!: EmpleadoModel;
   jornadas!: JornadaResponseModel[];
-  loadingEmpleado: boolean = true;
   loadingJornada: boolean = true;
+  contieneJornadas: boolean = true;
 
+  @Input() empleado: EmpleadoModel = {
+    id: 0,
+    nroDocumento: 0,
+    nombre: '',
+    apellido: '',
+    email: '',
+    fechaNacimiento: new Date, 
+    fechaIngreso: new Date,
+    fechaCreacion: new Date, 
+  };
 
   constructor( 
-    
-    private empleadoService: EmpleadoService,
-    private jornadaService: JornadaService,
-    private errorMessageService: ErrorMessageService,
-
+    private jornadaService:JornadaService,
+    private errorMessageService:ErrorMessageService,
+    private dialogoService: DialogosService,
+    private router: Router
   ){}
-  
-  ngOnChanges() {
-    this.getEmpleadoId
-  }
 
   ngOnInit(): void {
-
-    this.getEmpleadoId();
-  } 
-
-  getEmpleadoId(){
-    this.empleadoService.getEmpleadoById(this.empleadoId)
-    .subscribe({
-      next:(responseDTO: ResponseDTO) => {
-
-        if(responseDTO.isSuccess){
-          this.empleado = responseDTO.response as EmpleadoModel;
-          this.loadingEmpleado = false;
-          this.getJornadaByEmpleadoNroDocumento()
-        }
-        else {
-          console.log(responseDTO);
-          
-          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
-        }
-      },
-
-      error:(e) => {
-        console.log(e);
-
-        this.errorMessageService.ErrorMessage(e.error.message)
-      }
-    })
+    this.getJornadaByEmpleadoNroDocumento()
   }
-
+  
+  
   getJornadaByEmpleadoNroDocumento(){
 
-    if(!this.empleado.nroDocumento){
+    if(this.empleado.nroDocumento == 0){
       return;
     }
 
@@ -81,10 +60,13 @@ export class EmpleadoComponent implements OnInit, OnChanges{
           console.log(responseDTO.response);
           this.jornadas = responseDTO.response as JornadaResponseModel[];
           this.loadingJornada = false;
+
         } 
         else {
           responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
+          
         }
+        
       },
 
       error:(e) => {
@@ -92,6 +74,16 @@ export class EmpleadoComponent implements OnInit, OnChanges{
       }
     })
   }
+
+  borrarEmpleado(){
+    this.dialogoService.openDialog(this.empleado.id, this.empleado.nroDocumento);
+  }
+
+  navigationJornada(){
+    this.router.navigate(['/jornada/' + this.empleado.id])
+  }
+
+
 
 }
 

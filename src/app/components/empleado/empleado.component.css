@@ -102,3 +102,9 @@
     }
 
 }
+
+.jornada_text{
+    color: rgba(0,0,0,.54);
+    text-align: center;
+    padding: 8%;
+}

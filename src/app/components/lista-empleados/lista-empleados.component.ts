@@ -1,59 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
+import { JornadaService } from 'src/app/services/jornada/jornada.service';
+
 
 @Component({
   selector: 'app-lista-empleados',
   templateUrl: './lista-empleados.component.html',
   styleUrls: ['./lista-empleados.component.css']
 })
-export class ListaEmpleadosComponent implements OnInit{
+export class ListaEmpleadosComponent {
 
-  listEmpleados: EmpleadoModel[] = [];
-  nombreColumnas: string[] = ['id', 'nroDocumento', 'nombre', 'email', 'fechaNacimiento', 'fechaIngreso', 'fechaCreacion', 'action' ];
+  @Input() listEmpleados: EmpleadoModel[] = [];
   loading: boolean =  true;
-  index: number = 0;
+  idEmpleado: number = 0;
+  nroDocumento: number = 0;
+  nombreColumnas: string[] = ['id', 'nroDocumento', 'nombre', 'email', 'fechaNacimiento', 'fechaIngreso', 'fechaCreacion', 'action' ];
 
+  constructor( private dialogoService: DialogosService, private errorMessageService: ErrorMessageService){}
 
-  constructor( private empleadoService: EmpleadoService,
-    private errorMessageService: ErrorMessageService,
-  ){}
+  borrarEmpleadoDeLista() {
 
-  ngOnInit(): void {
-    this.getAllEmpleados()
+    this.dialogoService.openDialog(this.idEmpleado, this.nroDocumento)
   }
 
-  getAllEmpleados(){
-    this.empleadoService.getAllEmpleados().subscribe({
-      next:(responseDTO: ResponseDTO) => {
-
-      if(responseDTO.isSuccess){
-        this.listEmpleados = responseDTO.response as EmpleadoModel[];
-        this.loading = false;
-
-      }
-      else {
-        responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
-      }
-      
-      },
-      
-      error:(e) => {
-      this.errorMessageService.ErrorMessage(e.error.message)
-      }
-    })
+  caputarId(id: number, nroDocumento: number){
+    this.idEmpleado = id
+    this.nroDocumento = nroDocumento
   }
 
-  borrarEmpleadoDeLista(id: number) {
+
+
+
+    
+    /* 
     this.listEmpleados = this.listEmpleados.filter(empleado => empleado.id !== id);
     console.log(this.listEmpleados);
-    
+     */
   }
-
   
-}
+
+
+
 
 

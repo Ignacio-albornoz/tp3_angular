@@ -16,19 +16,21 @@
         </mat-form-field>
         <mat-form-field appearance="fill" class="form-input"> 
             <mat-label>Selecciona un concepto*</mat-label>
-              <mat-select [(value)]="conceptoIdSelected">
-                  <mat-option [value]="1">Turno Normal</mat-option>
+              <mat-select [(value)]="conceptoIdSelected" (selectionChange)="onConceptoSelected($event)">
+                  <mat-option [value]="1">Turno Normal </mat-option>
                   <mat-option [value]="2">Turno Extra</mat-option>
                   <mat-option [value]="3">Dia Libre</mat-option>
-
                 </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill" class="form-input"> 
             <mat-label>Horas Trabajadas</mat-label> 
-            <input matInput type="number" formControlName="hsTrabajadas" >
+            <input matInput type="number" formControlName="hsTrabajadas" [readOnly]="disable">
             <mat-error *ngIf="jornadaForm.get('hsTrabajadas')?.invalid && jornadaForm.get('hsTrabajadas')?.touched"> 
-              <span *ngIf="jornadaForm.get('hsTrabajadas')?.hasError('required')">Horas trabajadas es obligatorio, para el</span>
+              <span *ngIf="conceptoIdSelected !== 3 && jornadaForm.get('hsTrabajadas')?.hasError('min')">Horas Trabajadas deben ser mayor o igual {{hsTrabajadasMin}}</span>
+              <span *ngIf="conceptoIdSelected !== 3 && jornadaForm.get('hsTrabajadas')?.hasError('max')">Horas Trabajadas deben ser menor o igual {{hsTrabajadasMax}}</span>
+              <span *ngIf="conceptoIdSelected !== 3 && jornadaForm.get('hsTrabajadas')?.hasError('max')">Este concepto no requiere horas trabajadas</span>
             </mat-error>
+            
         </mat-form-field>
     
         <mat-form-field appearance="fill" class="form-input"> 

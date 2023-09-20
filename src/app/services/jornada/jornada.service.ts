@@ -28,4 +28,8 @@ export class JornadaService {
     return this.http.post<ResponseDTO>('http://localhost:8080/jornada', jornadaDTO)
   }
 
+  hasJornada(nroDocumento: number): Observable<ResponseDTO>{
+    return this.http.get<ResponseDTO>(`http://localhost:8080/jornada/exists/${nroDocumento}`)
+  }
+
 }

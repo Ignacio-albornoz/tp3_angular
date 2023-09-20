@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CreateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
+import { EmpleadoModel } from 'src/app/models/empleado.model';
+import { CreateAndUpdateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
@@ -15,7 +16,18 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 })
 export class EmpleadoFormComponent implements OnInit{
 
-  empleadoCreateDto!: CreateEmpleadoDTOModel;
+  empleadoCreateDto!: CreateAndUpdateEmpleadoDTOModel;
+
+  @Input() empleado: EmpleadoModel = {
+    id: 0,
+    nroDocumento: 0,
+    nombre: '',
+    apellido: '',
+    email: '',
+    fechaNacimiento: new Date, 
+    fechaIngreso: new Date,
+    fechaCreacion: new Date, 
+  };
 
   //Validador DataPicker
   maxDate: Date;

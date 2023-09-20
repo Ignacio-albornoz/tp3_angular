@@ -1,3 +1,4 @@
-<app-lista-empleados></app-lista-empleados>
-<app-empleado-form></app-empleado-form>
-<app-empleado [empleadoId] = "empleadoId"></app-empleado>
+<div *ngIf="!loadingEmpleado">
+    <app-empleado [empleado]="empleado" ></app-empleado>
+    <app-empleado-form></app-empleado-form>
+</div>

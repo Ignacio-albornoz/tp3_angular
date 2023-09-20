@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JornadaRequestModel } from 'src/app/models/jornada-request.model';
@@ -12,12 +12,18 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
   templateUrl: './jornada-form.component.html',
   styleUrls: ['./jornada-form.component.css']
 })
-export class JornadaFormComponent {
+export class JornadaFormComponent implements OnInit{
+
+  @Input() empleadoId: number = 0;
 
   jornadaRequest!: JornadaRequestModel;
 
   //ConceptoId selector
   conceptoIdSelected = 1;
+  disable: boolean = false;
+
+  hsTrabajadasMax: number = 8;
+  hsTrabajadasMin: number = 6;
 
 
   //Validador DataPicker
@@ -31,14 +37,49 @@ export class JornadaFormComponent {
 
   }
 
+  onConceptoSelected(event: any){
+    this.conceptoIdSelected = event.value;
+
+    console.log(this.conceptoIdSelected);
+
+    if(this.conceptoIdSelected === 1){
+      this.hsTrabajadasMin = 6;
+      this.hsTrabajadasMax = 8;
+    }
+
+    if(this.conceptoIdSelected === 2){
+      this.hsTrabajadasMin = 2;
+      this.hsTrabajadasMax = 6;
+    }
+
+    if(this.conceptoIdSelected === 3){
+      this.hsTrabajadasMin = -1;
+      this.hsTrabajadasMax = 1;
+
+      this.disable = true;
+
+      this.jornadaForm = this.formBuilder.group({
+        idEmpleado: [this.empleadoId, [Validators.required, Validators.min(1)]], 
+        fecha: ['', [Validators.required]],
+        hsTrabajadas:  ['0'],
+      });
+    }
+
+    
+  }
+
   jornadaForm!: FormGroup
 
   ngOnInit(): void {
+
+    console.log(this.empleadoId);
+    
     this.jornadaForm = this.formBuilder.group({
-      idEmpleado: ['', [Validators.required, Validators.min(1)]], 
+      idEmpleado: [this.empleadoId, [Validators.required, Validators.min(1)]], 
       fecha: ['', [Validators.required]],
-      hsTrabajadas:  ['', [Validators.required,]],
+      hsTrabajadas:  ['', [Validators.required, Validators.min(this.hsTrabajadasMin), Validators.max(this.hsTrabajadasMax)]],
     });
+
   }
 
   onSubmit() {
