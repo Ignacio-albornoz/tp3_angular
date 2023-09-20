@@ -1,6 +1,5 @@
 <div *ngIf="!loadingEmpleado" class="page-container">
     <div class="empleado-container">
-
         <app-empleado [empleado]="empleado" (onClickUpdate)="handleUpdateButton()"></app-empleado>
     </div>
     <div class="form-container" *ngIf="mostrarUpdateForm">

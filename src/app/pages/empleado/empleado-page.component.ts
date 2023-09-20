@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
@@ -22,6 +22,7 @@ export class EmpleadoPageComponent implements OnInit{
     private route: ActivatedRoute,
     private empleadoService: EmpleadoService,
     private errorMessageService: ErrorMessageService,
+    private router: Router
 
     ){
 
@@ -38,7 +39,7 @@ export class EmpleadoPageComponent implements OnInit{
 
   }
 
-
+  /**Llamados API */
 
   getEmpleadoId(){
     this.empleadoService.getEmpleadoById(this.empleadoId)
@@ -53,13 +54,14 @@ export class EmpleadoPageComponent implements OnInit{
         else {
           console.log(responseDTO);
           
+          this.navigationHome()
           responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
       },
 
       error:(e) => {
         console.log(e);
-
+        this.navigationHome()
         this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
@@ -77,5 +79,12 @@ export class EmpleadoPageComponent implements OnInit{
     console.log(this.mostrarUpdateForm);
     
     this.mostrarUpdateForm = !this.mostrarUpdateForm;
+  }
+
+  /**Otras funciones */
+
+  //Redirige a home, se usa en getEmpleadoId. en el caso de no econtrarse el empleado
+  navigationHome(){
+    this.router.navigate(['/empleado'])
   }
 }

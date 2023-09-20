@@ -13,12 +13,6 @@
     border-radius: 8px;
     padding: 2%;
 }
-
-
-
-.example-action-buttons {
-    /*padding-bottom: 20px;*/
-}
   
 .example-headers-align .mat-expansion-panel-header-description {
     justify-content: space-between;
@@ -44,8 +38,6 @@
     padding: 1.2% 0;
     color: white;
 }
-
-
 
 .form-input{
     width: 100%;

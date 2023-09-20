@@ -7,7 +7,7 @@ import { JornadaPageComponent } from "./pages/jornada/jornada-page.component";
 
 const routes: Routes = [
     {
-        path: '', component: HomePageComponent
+        path: 'home', component: HomePageComponent
     },
     {
         path: 'empleado/:id', component: EmpleadoPageComponent
@@ -17,6 +17,11 @@ const routes: Routes = [
     },
     {
         path: 'jornada/:id', component: JornadaPageComponent
+    },
+    {
+        path: '**',
+        redirectTo: 'home',
+        
     }
 ];
 
