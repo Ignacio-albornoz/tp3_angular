@@ -1,0 +1,38 @@
+.home-container{
+    display: flex;
+    padding: 4% 2%;
+    flex-direction: column;
+}
+
+.empleados-wrap{
+    width: 90%;
+    margin: 24px auto;
+    padding: 8% 2% 0% 2%;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.099), 0 4px 5px 1px #00000018, 0 3px 7px 2px #0000001f;
+}
+
+.empleado-add-button{
+    display: flex;
+    justify-content: flex-end;
+    padding: 2% 4%;
+    
+}
+
+.jornadas-wrap{
+    width: 90%;
+    margin: 24px auto;
+    padding: 4% 2%;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.099), 0 4px 5px 1px #00000018, 0 3px 7px 2px #0000001f;
+}
+
+.concepto-wrap{
+    width: 90%;
+    margin: 24px auto;
+    padding: 2%;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.099), 0 4px 5px 1px #00000018, 0 3px 7px 2px #0000001f;
+}
+
+.table-title{
+
+    margin: 0;
+}

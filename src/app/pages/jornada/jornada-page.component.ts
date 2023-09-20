@@ -10,14 +10,11 @@ export class JornadaPageComponent {
 
   loading: boolean = true;
 
-
   empleadoId: number = 0;
 
   constructor(
     private route: ActivatedRoute
-    ){
-
-  }
+    ){}
 
   ngOnInit(): void {
     

@@ -57,7 +57,7 @@
             <span *ngIf="empleadoForm.get('fechaIngreso')?.hasError('fechaFutura')">La fecha de ingreso no puede ser posterior al día de la fecha.</span>
           </mat-error>
         </mat-form-field>
-        <button type="submit" mat-raised-button color="primary" [disabled]="empleadoForm.invalid" class="form-submit-button">Enviar</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="empleadoForm.invalid" class="form-submit-button">Confirmar</button>
       </form>
     </div>
   </mat-card>

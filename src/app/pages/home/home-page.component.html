@@ -1,4 +1,20 @@
-<app-lista-empleados *ngIf="!loading" [listEmpleados]="listEmpleados"></app-lista-empleados>
-<app-lista-jornadas></app-lista-jornadas>
-<app-concepto></app-concepto>
+<div class="home-container" >
+    <div class="empleados-wrap" *ngIf="listEmpleados.length> 0">
+        <h2 class="table-title" >Empleados</h2>
+        <app-lista-empleados *ngIf="!loading" [listEmpleados]="listEmpleados"></app-lista-empleados>
+        <div class="empleado-add-button">
+            <button mat-fab color="primary" aria-label="button with a add icon" class="empleado_add-button" (click)="navigationEmpleado()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="jornadas-wrap" *ngIf="listJornadas.length> 0">
+        <h2 class="table-title" >Jornadas</h2>
+        <app-lista-jornadas  [listJornadas]="listJornadas"></app-lista-jornadas>
+    </div>
+    <div class="concepto-wrap">
+        <h2 class="table-title" >Conceptos</h2>
+        <app-concepto></app-concepto> 
+    </div>
+</div>
 

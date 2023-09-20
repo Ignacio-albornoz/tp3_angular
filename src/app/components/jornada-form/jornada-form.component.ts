@@ -45,11 +45,21 @@ export class JornadaFormComponent implements OnInit{
     if(this.conceptoIdSelected === 1){
       this.hsTrabajadasMin = 6;
       this.hsTrabajadasMax = 8;
+      this.jornadaForm = this.formBuilder.group({
+        idEmpleado: [this.empleadoId, [Validators.required, Validators.min(1)]], 
+        fecha: ['', [Validators.required]],
+        hsTrabajadas:  ['', [Validators.required, Validators.min(this.hsTrabajadasMin), Validators.max(this.hsTrabajadasMax)]],
+      });
     }
 
     if(this.conceptoIdSelected === 2){
       this.hsTrabajadasMin = 2;
       this.hsTrabajadasMax = 6;
+      this.jornadaForm = this.formBuilder.group({
+        idEmpleado: [this.empleadoId, [Validators.required, Validators.min(1)]], 
+        fecha: ['', [Validators.required]],
+        hsTrabajadas:  ['', [Validators.required, Validators.min(this.hsTrabajadasMin), Validators.max(this.hsTrabajadasMax)]],
+      });
     }
 
     if(this.conceptoIdSelected === 3){

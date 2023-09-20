@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
+import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
@@ -13,11 +15,13 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 export class HomePageComponent implements OnInit{
 
   listEmpleados: EmpleadoModel[] = [];
+  listJornadas: JornadaResponseModel[] = [];
   loading: boolean =  true;
 
   constructor( private empleadoService: EmpleadoService,
     private errorMessageService: ErrorMessageService,
-    private jornadaService: JornadaService
+    private jornadaService: JornadaService,
+    private router: Router,
   ){}
 
   ngOnInit(): void {
@@ -45,12 +49,37 @@ export class HomePageComponent implements OnInit{
     })
   }
 
-  
+  getAllJornadas(){
+    this.jornadaService.getAllJornadas().subscribe({
+      next:(responseDTO: ResponseDTO) => {
 
+        if(responseDTO.isSuccess){
+
+          this.listJornadas = responseDTO.response as JornadaResponseModel[];
+          this.loading = false;
+
+        }
+        else {
+          responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
+        }
+        
+        },
+        
+        error:(e) => {
+        this.errorMessageService.ErrorMessage(e.error.message)
+        }
+    })
+  }
+
+  
   borrarEmpleadoDeLista(id: number) {
     this.loading = true;
     this.listEmpleados = this.listEmpleados.filter(empleado => empleado.id !== id);
     console.log(this.listEmpleados);
     this.loading = false;
+  }
+
+  navigationEmpleado(){
+    this.router.navigate(['/empleado/'])
   }
 }

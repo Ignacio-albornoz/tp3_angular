@@ -46,7 +46,7 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <div class="description-jornadas" >
-                <app-lista-jornadas *ngIf="jornadas.length > 0; else noJornadas" [minimalListActive]="true" [minimalList]="jornadas"></app-lista-jornadas>
+                <app-lista-jornadas *ngIf="jornadas.length > 0; else noJornadas" [minimalListActive]="true" [listJornadas]="jornadas"></app-lista-jornadas>
                 
                 <ng-template #noJornadas>
                   <mat-card-subtitle class="jornada_text">No se agregaron Jornadas!</mat-card-subtitle>

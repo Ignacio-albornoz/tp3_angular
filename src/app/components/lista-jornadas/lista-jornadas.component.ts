@@ -13,11 +13,9 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 export class ListaJornadasComponent {
 
   @Input() minimalListActive: Boolean = false;
-  @Input() minimalList: JornadaResponseModel[] = [];
 
+  @Input() listJornadas: JornadaResponseModel[] = [];
 
-
-  listJornadas: JornadaResponseModel[] = [];
   nombreColumnas: string[] = ['id', 'nroDocumento', 'nombreCompleto', 'fecha', 'concepto', 'hsTrabajadas'];
   nombreColumnasMinimal: string[] = ['fecha', 'concepto', 'hsTrabajadas'];
 
@@ -34,8 +32,10 @@ export class ListaJornadasComponent {
     
     
   }
+
+  //Se evalua si el empleado tiene jornadas
   useInputList(){
-    this.minimalList.length > 0 ? this.listJornadas = this.minimalList : this.getAllJornadas()
+    this.listJornadas.length > 0 ? this.listJornadas = this.listJornadas : this.getAllJornadas()
     this.loading = false
   }
 
