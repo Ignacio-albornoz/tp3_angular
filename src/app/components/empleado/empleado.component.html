@@ -1,7 +1,7 @@
 <mat-card class="empleado-card">
     <mat-card-header class="empleado_header_wrap">
-        <mat-card-title class="empleado_header_text">{{ empleado.nombre + ' ' + empleado.apellido }}</mat-card-title>
-        <mat-card-subtitle class="empleado_header_text">{{ empleado.email }}</mat-card-subtitle>
+        <mat-card-title class="empleado_header_text header_title">{{ empleado.nombre + ' ' + empleado.apellido }}</mat-card-title>
+        <mat-card-subtitle class="empleado_header_text header_sub-title">{{ empleado.email }}</mat-card-subtitle>
         <app-empleado-menu (handlerClickDelete)="borrarEmpleado()" [colorWhite]="true" [nroDocumento]="empleado.nroDocumento" [idEmpleado]="empleado.id"></app-empleado-menu>
         
     </mat-card-header>
@@ -12,7 +12,9 @@
                 Empleado
               </mat-panel-title>
               <mat-panel-description class="personal-info_expasion-panel_description">
-                Informacion Personal
+                <p class="expasion-panel_text">
+                  Informacion Personal
+                </p>
                 <mat-icon>account_circle</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -26,7 +28,7 @@
                     <button mat-fab color="primary" (click)="borrarEmpleado()" aria-label="icon button delete" class="empleado_button">
                         <mat-icon >delete</mat-icon>
                     </button>
-                    <button mat-fab color="primary" aria-label="icon button edit" class="empleado_button">
+                    <button mat-fab color="primary" aria-label="icon button edit" class="empleado_button" (click)="onClickUpdateButton()">
                         <mat-icon >edit</mat-icon>
                     </button>
                 </div>

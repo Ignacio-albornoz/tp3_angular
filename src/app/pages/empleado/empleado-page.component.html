@@ -1,5 +1,9 @@
-<div *ngIf="!loadingEmpleado">
-    <app-empleado [empleado]="empleado" ></app-empleado>
-    <app-empleado-form-update (seActualizoEmpleado)="handleOnChageEmpleado($event)" [empleado]="empleado"></app-empleado-form-update>
-    <app-empleado-form></app-empleado-form>
+<div *ngIf="!loadingEmpleado" class="page-container">
+    <div class="empleado-container">
+
+        <app-empleado [empleado]="empleado" (onClickUpdate)="handleUpdateButton()"></app-empleado>
+    </div>
+    <div class="form-container" *ngIf="mostrarUpdateForm">
+        <app-empleado-form-update  (seActualizoEmpleado)="handleOnChageEmpleado($event)" [empleado]="empleado" ></app-empleado-form-update>
+    </div>
 </div>

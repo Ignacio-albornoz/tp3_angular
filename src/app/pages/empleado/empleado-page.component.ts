@@ -12,6 +12,8 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 })
 export class EmpleadoPageComponent implements OnInit{
 
+  mostrarUpdateForm: boolean = false;
+
   empleadoId: number = 0;
   empleado!: EmpleadoModel;
   loadingEmpleado: boolean = true;
@@ -63,11 +65,17 @@ export class EmpleadoPageComponent implements OnInit{
     })
   }
 
+  /* Outputs Handles */
+
   handleOnChageEmpleado(event: EmpleadoModel){
     this.loadingEmpleado = true;
     this.empleado = event
     this.loadingEmpleado = false;
+  }
 
+  handleUpdateButton(){
+    console.log(this.mostrarUpdateForm);
     
+    this.mostrarUpdateForm = !this.mostrarUpdateForm;
   }
 }

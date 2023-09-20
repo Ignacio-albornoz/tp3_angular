@@ -1,0 +1,35 @@
+.page-container{
+    display: flex;
+    justify-content: space-around;
+    gap: 8px;
+    padding: 2%;
+}
+
+.empleado-container{
+    width: 46%;
+    margin: 0 auto;
+
+}
+
+.form-container{
+    width: 46%;
+
+}
+
+@media screen and (max-width: 768px) {
+    .page-container{
+        flex-direction: column-reverse;
+    }
+
+    .empleado-container{
+        width: 98%;
+        margin: 0 auto;
+    
+    }
+    
+    .form-container{
+        width: 98%;
+        margin: 0 auto;
+    
+    }
+}

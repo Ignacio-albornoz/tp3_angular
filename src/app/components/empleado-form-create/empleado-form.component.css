@@ -1,5 +1,5 @@
 .form-card {
-    max-width: 44vw;
+    width: 100%;
     min-width: 320px;
     padding: 0;
     margin: 16px 0  ;
@@ -41,8 +41,10 @@
 
 .header_text{
     margin: 0;
+    padding: 1.2% 0;
     color: white;
 }
+
 
 
 .form-input{

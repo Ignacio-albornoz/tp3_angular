@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import { Router } from '@angular/router';
 
 import {MatAccordion} from '@angular/material/expansion';
@@ -23,6 +23,8 @@ export class EmpleadoComponent implements OnInit {
   loadingJornada: boolean = true;
   contieneJornadas: boolean = true;
 
+  @Output() onClickUpdate = new EventEmitter<void>()
+  
   @Input() empleado: EmpleadoModel = {
     id: 0,
     nroDocumento: 0,
@@ -45,6 +47,9 @@ export class EmpleadoComponent implements OnInit {
     this.getJornadaByEmpleadoNroDocumento()
   }
   
+  onClickUpdateButton(){
+    this.onClickUpdate.emit()
+  }
   
   getJornadaByEmpleadoNroDocumento(){
 
