@@ -14,7 +14,6 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 export class EmpleadoPageComponent implements OnInit{
 
   empleadoId: number = 0;
-  cantidadJornadasDelEmpleado: number = 0;
   empleado!: EmpleadoModel;
   loadingEmpleado: boolean = true;
 

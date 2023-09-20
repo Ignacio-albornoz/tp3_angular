@@ -1,5 +1,6 @@
 import { Component, OnInit, Input} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { Observable, map } from 'rxjs';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { CreateAndUpdateEmpleadoDTOModel } from 'src/app/models/empleadoDTO.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
@@ -34,7 +35,11 @@ export class EmpleadoFormComponent implements OnInit{
   menorDeDeEdadDate: Date;
 
 
-  constructor(private formBuilder: FormBuilder, private empleadoService: EmpleadoService, private errorMessageService: ErrorMessageService){
+  constructor(
+
+    private formBuilder: FormBuilder,
+    private empleadoService: EmpleadoService,
+    private errorMessageService: ErrorMessageService){
 
     const fechaActual = Date.now();
     const TIMPESTAMP_18_YEAR = 568000253700;
@@ -48,10 +53,10 @@ export class EmpleadoFormComponent implements OnInit{
 
   ngOnInit(): void {
     this.empleadoForm = this.formBuilder.group({
-      nroDocumento: ['', [Validators.required, Validators.min(1000000)]], 
+      nroDocumento: ['', [Validators.required, Validators.min(1000000)], [this.nroDocumentoExistsValidator.bind(this)]], 
       nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], 
       apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-      email: ['', [Validators.required, Validators.email]], 
+      email: ['', [Validators.required, Validators.email], [this.emailExistsValidator.bind(this)]], 
       fechaNacimiento: ['', [Validators.required]], 
       fechaIngreso: ['', [Validators.required]]
     });
@@ -80,6 +85,23 @@ export class EmpleadoFormComponent implements OnInit{
       }
     })
   }
+  
+  nroDocumentoExistsValidator(control: AbstractControl): Observable<ValidationErrors | null> {
 
+    return this.empleadoService
+     .existsByNroDocumento(control.value)
+     .pipe( map(exists => exists.response ? { nroDocumentoExists: true} : null) ); 
+  }
+  
+  emailExistsValidator(control: AbstractControl): Observable<ValidationErrors | null> {
+
+    return this.empleadoService
+     .existsByEmail(control.value)
+     .pipe( 
+
+        map(exists => exists.response ? { emailExists: true } : null ) 
+
+      ); 
+  }
 
 }

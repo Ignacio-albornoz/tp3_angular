@@ -31,4 +31,12 @@ export class EmpleadoService {
   deleteEmpleado(id: Number): Observable<Object>{
     return this.http.delete(`http://localhost:8080/empleado/${id}`)
   }
+
+  existsByEmail(email: String): Observable<ResponseDTO>{
+    return this.http.get<ResponseDTO>(`http://localhost:8080/empleado/exists/${email}`)
+  }
+
+  existsByNroDocumento(nroDocumento: number): Observable<ResponseDTO>{
+    return this.http.get<ResponseDTO>(`http://localhost:8080/empleado/exists/nroDocumento/${nroDocumento}`)
+  }
 }
