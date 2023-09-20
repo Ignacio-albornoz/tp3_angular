@@ -12,7 +12,7 @@ import { ConceptoComponent } from './components/concepto/concepto.component';
 import { EmpleadoComponent } from './components/empleado/empleado.component';
 import { ListaEmpleadosComponent } from './components/lista-empleados/lista-empleados.component';
 import { ListaJornadasComponent } from './components/lista-jornadas/lista-jornadas.component';
-import { EmpleadoFormComponent } from './components/empleado-form/empleado-form.component'
+import { EmpleadoFormComponent } from './components/empleado-form-create/empleado-form.component'
 import { JornadaFormComponent } from './components/jornada-form/jornada-form.component';
 import { EmpleadoMenuComponent } from './components/empleado-menu/empleado-menu.component';
 import { DialogoComponent } from './components/dialogo/dialogo.component';
@@ -22,6 +22,7 @@ import { JornadaPageComponent } from "./pages/jornada/jornada-page.component";
 
 //Shareds
 import { SharedModule } from './shared/shared.module';
+import { EmpleadoFormUpdateComponent } from './components/empleado-form-update/empleado-form-update.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { SharedModule } from './shared/shared.module';
     JornadaFormComponent,
     EmpleadoMenuComponent,
     DialogoComponent,
+    EmpleadoFormUpdateComponent,
     
   ],
   imports: [

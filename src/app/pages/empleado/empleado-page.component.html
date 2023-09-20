@@ -1,4 +1,5 @@
 <div *ngIf="!loadingEmpleado">
     <app-empleado [empleado]="empleado" ></app-empleado>
+    <app-empleado-form-update (seActualizoEmpleado)="handleOnChageEmpleado($event)" [empleado]="empleado"></app-empleado-form-update>
     <app-empleado-form></app-empleado-form>
 </div>

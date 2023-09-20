@@ -19,6 +19,8 @@ export class EmpleadoFormComponent implements OnInit{
 
   empleadoCreateDto!: CreateAndUpdateEmpleadoDTOModel;
 
+  @Input() update: boolean = false;
+
   @Input() empleado: EmpleadoModel = {
     id: 0,
     nroDocumento: 0,
@@ -52,8 +54,9 @@ export class EmpleadoFormComponent implements OnInit{
   empleadoForm!: FormGroup
 
   ngOnInit(): void {
+
     this.empleadoForm = this.formBuilder.group({
-      nroDocumento: ['', [Validators.required, Validators.min(1000000)], [this.nroDocumentoExistsValidator.bind(this)]], 
+      nroDocumento: ['', [Validators.required, Validators.min(900000)], [this.nroDocumentoExistsValidator.bind(this)]], 
       nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], 
       apellido: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
       email: ['', [Validators.required, Validators.email], [this.emailExistsValidator.bind(this)]], 

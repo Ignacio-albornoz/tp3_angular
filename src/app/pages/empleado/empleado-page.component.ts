@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'
 import { EmpleadoModel } from 'src/app/models/empleado.model';
-import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
@@ -37,9 +36,6 @@ export class EmpleadoPageComponent implements OnInit{
 
   }
 
-  ngOnChanges() {
-    this.getEmpleadoId
-  }
 
 
   getEmpleadoId(){
@@ -49,6 +45,7 @@ export class EmpleadoPageComponent implements OnInit{
 
         if(responseDTO.isSuccess){
           this.empleado = responseDTO.response as EmpleadoModel;
+          
           this.loadingEmpleado = false;
         }
         else {
@@ -64,5 +61,13 @@ export class EmpleadoPageComponent implements OnInit{
         this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
+  }
+
+  handleOnChageEmpleado(event: EmpleadoModel){
+    this.loadingEmpleado = true;
+    this.empleado = event
+    this.loadingEmpleado = false;
+
+    
   }
 }

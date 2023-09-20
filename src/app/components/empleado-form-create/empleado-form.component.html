@@ -10,7 +10,7 @@
         <input matInput type="number" formControlName="nroDocumento" > 
         <mat-error *ngIf="empleadoForm.get('nroDocumento')?.invalid && empleadoForm.get('nroDocumento')?.touched"> 
           <span *ngIf="empleadoForm.get('nroDocumento')?.hasError('required')">El número de documento es obligatorio.</span>
-          <span *ngIf="empleadoForm.get('nroDocumento')?.hasError('min')">El número de documento debe ser mayor o igual a 1 millon.</span>
+          <span *ngIf="empleadoForm.get('nroDocumento')?.hasError('min')">El número de documento debe ser mayor o igual a 900 mil.</span>
           <span *ngIf="empleadoForm.get('nroDocumento')?.hasError('nroDocumentoExists')"> El Nro. de Documento ya está registrado </span>
         </mat-error>
       </mat-form-field>

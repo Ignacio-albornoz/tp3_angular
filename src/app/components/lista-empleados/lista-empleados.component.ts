@@ -23,7 +23,6 @@ export class ListaEmpleadosComponent {
   constructor( private dialogoService: DialogosService, private errorMessageService: ErrorMessageService){}
 
   borrarEmpleadoDeLista() {
-
     this.dialogoService.openDialog(this.idEmpleado, this.nroDocumento)
   }
 
@@ -32,15 +31,7 @@ export class ListaEmpleadosComponent {
     this.nroDocumento = nroDocumento
   }
 
-
-
-
-    
-    /* 
-    this.listEmpleados = this.listEmpleados.filter(empleado => empleado.id !== id);
-    console.log(this.listEmpleados);
-     */
-  }
+}
   
 
 

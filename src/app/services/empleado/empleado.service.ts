@@ -24,8 +24,8 @@ export class EmpleadoService {
     return this.http.post<ResponseDTO>('http://localhost:8080/empleado', empleadoDTO)
   }
 
-  updateEmpleado(empleadoDTO: CreateAndUpdateEmpleadoDTOModel): Observable<ResponseDTO>{
-    return this.http.put<ResponseDTO>('http://localhost:8080/empleado', empleadoDTO)
+  updateEmpleado(empleadoDTO: CreateAndUpdateEmpleadoDTOModel, id: Number): Observable<ResponseDTO>{
+    return this.http.put<ResponseDTO>(`http://localhost:8080/empleado/${id}`, empleadoDTO)
   }
 
   deleteEmpleado(id: Number): Observable<Object>{

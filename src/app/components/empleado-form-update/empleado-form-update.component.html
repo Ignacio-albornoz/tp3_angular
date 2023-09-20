@@ -1,0 +1,65 @@
+<mat-card class="form-card">
+    <mat-card-header class="header_wrap">
+      <mat-card-title class="header_text">Actualizar Usuario</mat-card-title>
+      <mat-card-subtitle class="header_text">Formulario de actualizacion de usuario: {{empleado.nombre}}</mat-card-subtitle>
+    </mat-card-header>
+    <div class="form-container">
+      <form [formGroup]="empleadoForm" (ngSubmit)="onSubmit()"> 
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Número de documento</mat-label> 
+          <input matInput type="number" formControlName="nroDocumento" > 
+          <mat-error *ngIf="empleadoForm.get('nroDocumento')?.invalid && empleadoForm.get('nroDocumento')?.touched"> 
+            <span *ngIf="empleadoForm.get('nroDocumento')?.hasError('required')">El número de documento es obligatorio.</span>
+            <span *ngIf="empleadoForm.get('nroDocumento')?.hasError('min')">El número de documento debe ser mayor o igual a 900 mil.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Nombre</mat-label> 
+          <input matInput type="text" formControlName="nombre" >
+          <mat-error *ngIf="empleadoForm.get('nombre')?.invalid && empleadoForm.get('nombre')?.touched"> 
+            <span *ngIf="empleadoForm.get('nombre')?.hasError('required')">El nombre es obligatorio.</span>
+            <span *ngIf="empleadoForm.get('nombre')?.hasError('pattern')">Solo se permiten letras en el campo nombre.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Apellido</mat-label> 
+          <input matInput type="text" formControlName="apellido" > 
+          <mat-error *ngIf="empleadoForm.get('apellido')?.invalid && empleadoForm.get('apellido')?.touched"> 
+            <span *ngIf="empleadoForm.get('apellido')?.hasError('required')">El apellido es obligatorio.</span>
+            <span *ngIf="empleadoForm.get('apellido')?.hasError('pattern')">Solo se permiten letras en el campo apellido.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Email</mat-label> 
+          <input matInput type="email" formControlName="email" > 
+          <mat-error *ngIf="empleadoForm.get('email')?.invalid && empleadoForm.get('email')?.touched"> 
+            <span *ngIf="empleadoForm.get('email')?.hasError('required')">El email es obligatorio.</span>
+            <span *ngIf="empleadoForm.get('email')?.hasError('email')">El email ingresado no es correcto.</span>
+           </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Fecha de nacimiento</mat-label> 
+          <input matInput [matDatepicker]="picker1" [max]="menorDeDeEdadDate" formControlName="fechaNacimiento" > 
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle> 
+          <mat-datepicker #picker1></mat-datepicker> 
+          <mat-error *ngIf="empleadoForm.get('fechaNacimiento')?.invalid && empleadoForm.get('fechaNacimiento')?.touched"> 
+            <span *ngIf="empleadoForm.get('fechaNacimiento')?.hasError('required')">La fecha de nacimiento es obligatoria.</span>
+            <span *ngIf="empleadoForm.get('fechaNacimiento')?.hasError('fechaFutura')">La fecha de nacimiento no puede ser posterior al día de la fecha.</span>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="form-input"> 
+          <mat-label>Fecha de ingreso</mat-label> 
+          <input matInput [matDatepicker]="picker2" [max]="maxDate" formControlName="fechaIngreso"> 
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle> 
+          <mat-datepicker #picker2></mat-datepicker> 
+          <mat-error *ngIf="empleadoForm.get('fechaIngreso')?.invalid && empleadoForm.get('fechaIngreso')?.touched"> 
+            <span *ngIf="empleadoForm.get('fechaIngreso')?.hasError('required')">La fecha de ingreso es obligatoria.</span>
+            <span *ngIf="empleadoForm.get('fechaIngreso')?.hasError('fechaFutura')">La fecha de ingreso no puede ser posterior al día de la fecha.</span>
+          </mat-error>
+        </mat-form-field>
+        <button type="submit" mat-raised-button color="primary" [disabled]="empleadoForm.invalid" class="form-submit-button">Enviar</button>
+      </form>
+    </div>
+  </mat-card>
+    
+  
