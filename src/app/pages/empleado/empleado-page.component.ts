@@ -32,11 +32,9 @@ export class EmpleadoPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
     this.route.paramMap.subscribe(params =>{
       let idNumber = params.get('id')
       idNumber ? this.empleadoId = parseInt(idNumber) : null
-      console.log(this.empleadoId);
     })
     this.getEmpleadoId();
 
@@ -55,7 +53,6 @@ export class EmpleadoPageComponent implements OnInit{
           this.loadingEmpleado = false;
         }
         else {
-          console.log(responseDTO);
           
           this.navigationHome()
           responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
@@ -63,7 +60,6 @@ export class EmpleadoPageComponent implements OnInit{
       },
 
       error:(e) => {
-        console.log(e);
         this.navigationHome()
         this.errorMessageService.ErrorMessage(e.error.message)
       }
@@ -79,9 +75,7 @@ export class EmpleadoPageComponent implements OnInit{
     this.loadingEmpleado = false;
   }
 
-  handleUpdateButton(){
-    console.log(this.mostrarUpdateForm);
-    
+  handleUpdateButton(){    
     this.mostrarUpdateForm = !this.mostrarUpdateForm;
   }
 

@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { JornadaRequestModel } from 'src/app/models/jornada-request.model';
+import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
 import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
 import { JornadaService } from 'src/app/services/jornada/jornada.service';
@@ -15,6 +16,8 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 export class JornadaFormComponent implements OnInit{
 
   @Input() empleadoId: number = 0;
+
+  @Output() seAgregoJornada = new EventEmitter<JornadaResponseModel>()
 
   jornadaRequest!: JornadaRequestModel;
 
@@ -39,8 +42,6 @@ export class JornadaFormComponent implements OnInit{
 
   onConceptoSelected(event: any){
     this.conceptoIdSelected = event.value;
-
-    console.log(this.conceptoIdSelected);
 
     if(this.conceptoIdSelected === 1){
       this.hsTrabajadasMin = 6;
@@ -81,8 +82,6 @@ export class JornadaFormComponent implements OnInit{
   jornadaForm!: FormGroup
 
   ngOnInit(): void {
-
-    console.log(this.empleadoId);
     
     this.jornadaForm = this.formBuilder.group({
       idEmpleado: [this.empleadoId, [Validators.required, Validators.min(1)]], 
@@ -94,17 +93,14 @@ export class JornadaFormComponent implements OnInit{
 
   onSubmit() {
     this.jornadaRequest = this.jornadaForm.value;
-    console.log(this.jornadaRequest);
-    this.jornadaRequest.idConcepto = this.conceptoIdSelected;
-    console.log(this.jornadaRequest);
-    
+    this.jornadaRequest.idConcepto = this.conceptoIdSelected;    
     this.jornadaService.createJornada(this.jornadaRequest)
     .subscribe({
       next:(responseDTO: ResponseDTO) => {
 
         if(responseDTO.isSuccess){
-          console.log('Creado');
-          console.log(responseDTO.response);
+          
+          this.seAgregoJornada.emit(responseDTO.response as JornadaResponseModel)
           
         }
         else {

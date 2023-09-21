@@ -26,6 +26,7 @@ export class HomePageComponent implements OnInit{
 
   ngOnInit(): void {
     this.getAllEmpleados()
+    this.getAllJornadas()
   }
 
   getAllEmpleados(){
@@ -75,11 +76,14 @@ export class HomePageComponent implements OnInit{
   borrarEmpleadoDeLista(id: number) {
     this.loading = true;
     this.listEmpleados = this.listEmpleados.filter(empleado => empleado.id !== id);
-    console.log(this.listEmpleados);
     this.loading = false;
   }
 
   navigationEmpleado(){
     this.router.navigate(['/empleado/'])
+  }
+
+  navigationJornada(){
+    this.router.navigate(['/jornada/'])
   }
 }

@@ -33,7 +33,8 @@ export class DialogosService {
 
     this.empleadoService.deleteEmpleado(empleadoId).subscribe({
       next:(responseDTO: Object) => {
-        console.log(responseDTO);
+
+        this.errorMessageService.ErrorMessage('Se borro el empleado!');
         this.router.navigate(['/'])
       },
 

@@ -67,15 +67,15 @@ export class EmpleadoFormComponent implements OnInit{
 
   onSubmit() {
     this.empleadoCreateDto = this.empleadoForm.value;
-    console.log(this.empleadoCreateDto);
     this.empleadoService.createEmpleado(this.empleadoCreateDto)
     .subscribe({
       next:(responseDTO: ResponseDTO) => {
 
         if(responseDTO.isSuccess){
           
-          console.log('Creado');
-          console.log(responseDTO.response);
+
+          this.errorMessageService.ErrorMessage('Empleado creado!')
+
           
         }
         else {

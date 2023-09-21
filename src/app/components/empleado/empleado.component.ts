@@ -61,8 +61,7 @@ export class EmpleadoComponent implements OnInit {
       next:(responseDTO: ResponseDTO) => {
 
         if(responseDTO.isSuccess){
-
-          console.log(responseDTO.response);
+          
           this.jornadas = responseDTO.response as JornadaResponseModel[];
           this.loadingJornada = false;
 

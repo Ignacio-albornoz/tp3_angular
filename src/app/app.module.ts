@@ -44,8 +44,7 @@ import { SharedModule } from './shared/shared.module';
     DialogoComponent,
     EmpleadoFormUpdateComponent,
     LayoutComponent,
-    NewEmpleadosPageComponent,
-    
+    NewEmpleadosPageComponent
   ],
   imports: [
     BrowserModule,

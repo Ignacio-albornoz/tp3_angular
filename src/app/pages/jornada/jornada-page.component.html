@@ -1,10 +1,9 @@
-<div class="page-container" >
+<div class="page-container" *ngIf="!loading">
     <div class="jornadas-wrap">
         <h2 class="table-title" >Jornadas</h2>
-        <app-lista-jornadas></app-lista-jornadas>
+        <app-lista-jornadas *ngIf="!loading" [listJornadas]="listJornadas"></app-lista-jornadas>
     </div>
     <div class="jornada-form_wrap">
-        <app-jornada-form *ngIf="!loading" [empleadoId]="empleadoId"></app-jornada-form>
+        <app-jornada-form (seAgregoJornada)="handleAddJornada($event)" [empleadoId]="empleadoId"></app-jornada-form>
     </div>
-
 </div>

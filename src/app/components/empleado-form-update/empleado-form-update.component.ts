@@ -75,7 +75,7 @@ export class EmpleadoFormUpdateComponent {
 
   onSubmit() {
     this.empleadoCreateDto = this.empleadoForm.value;
-    console.log(this.empleadoCreateDto);
+
     this.empleadoService.updateEmpleado(this.empleadoCreateDto, this.empleado.id)
     .subscribe({
       next:(responseDTO: ResponseDTO) => {
@@ -83,8 +83,7 @@ export class EmpleadoFormUpdateComponent {
         
         if(responseDTO.isSuccess){
           
-          console.log('Update');
-          console.log(responseDTO.response);
+          this.errorMessageService.ErrorMessage('Update')
 
           this.seActualizoEmpleado.emit(responseDTO.response as EmpleadoModel);
 
