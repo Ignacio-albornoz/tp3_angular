@@ -10,6 +10,9 @@ export class LayoutComponent {
 
   constructor(private router: Router){}
 
+
+  /**Nav */
+
   navigationJornada(){
     this.router.navigate(['/jornada/'])
   }

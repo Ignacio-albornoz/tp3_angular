@@ -6,6 +6,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class ErrorMessageService {
 
+  /**Encargado de dar Feedback al usuario, mal llamado ErrorMassage, es solo message*/
+
   constructor(private snackBar: MatSnackBar) { }
 
   ErrorMessage(errorMessage: string, buttonText: string = 'OK') {

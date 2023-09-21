@@ -16,6 +16,8 @@ export class EmpleadoService {
     private http: HttpClient
   ) { }
 
+  /**Llamados API */
+
   getAllEmpleados(): Observable<ResponseDTO>{
     return this.http.get<ResponseDTO>(`${this.API_URL}/empleado`);
   }

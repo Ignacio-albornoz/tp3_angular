@@ -26,9 +26,8 @@ export class EmpleadoFormUpdateComponent {
 
   /* Inputs & Outputs*/
 
+  //Emite un evento cuando se actualiza el usuario y lo pasa por parametros
   @Output() seActualizoEmpleado = new EventEmitter<EmpleadoModel>()
-
-  @Input() update: boolean = false;
 
   @Input() empleado: EmpleadoModel = {
     id: 0,

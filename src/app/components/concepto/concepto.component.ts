@@ -18,15 +18,16 @@ export class ConceptoComponent implements OnInit {
   concepto: ConceptoModel[] = [];
   loading: boolean = true;
 
+  /*Columnas para table material*/
   nombreColumnas: string[] = ['id', 'nombre', 'laborable', 'hsMinimo', 'hsMaximo'];
   
   constructor( private _conceptoService: ConceptoService, private errorMessageService: ErrorMessageService){}
 
   ngOnInit(): void {
- 
     this.getConceptos();
   }
 
+  /**Llamados API */
   getConceptos(){
     this._conceptoService
     .getAllConceptos()
@@ -37,12 +38,10 @@ export class ConceptoComponent implements OnInit {
           this.concepto = responseDTO.response as ConceptoModel[];
           this.loading = false;
         }
-
         else {
           responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
       },
-
       error:(e) => {
         this.errorMessageService.ErrorMessage(e.error.message)
       }

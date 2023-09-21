@@ -17,13 +17,18 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 })
 export class EmpleadoComponent implements OnInit {
 
+
+  //Necesario para desplegable material
   @ViewChild(MatAccordion) accordion!: MatAccordion;
   
+  /**Variables */
   jornadas!: JornadaResponseModel[];
   loadingJornada: boolean = true;
   contieneJornadas: boolean = true;
 
+  /**Le avisa al padre cuando se apreta el boton update */
   @Output() onClickUpdate = new EventEmitter<void>()
+  
   
   @Input() empleado: EmpleadoModel = {
     id: 0,
@@ -54,9 +59,12 @@ export class EmpleadoComponent implements OnInit {
   getJornadaByEmpleadoNroDocumento(){
 
     if(this.empleado.nroDocumento == 0){
+
       return;
+    
     }
 
+    //Se obtienen las jornadas de un empleado por su nro documento
     this.jornadaService.getJornadaByNrDocumento(this.empleado.nroDocumento).subscribe({
       next:(responseDTO: ResponseDTO) => {
 
@@ -79,10 +87,14 @@ export class EmpleadoComponent implements OnInit {
     })
   }
 
+
+  //dialogo de confirmacion, para borrar un empleado
   borrarEmpleado(){
     this.dialogoService.openDialog(this.empleado.id, this.empleado.nroDocumento);
   }
 
+  /**Otras funciones */
+  
   navigationJornada(){
     this.router.navigate(['/jornada/' + this.empleado.id])
   }

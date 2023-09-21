@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 
 export class DialogoComponent {
-
+  //Componente Necesario para mostrar cuadros de dialogos
 }

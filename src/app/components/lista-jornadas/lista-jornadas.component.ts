@@ -1,8 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { JornadaResponseModel } from 'src/app/models/jornada-response.model';
-import { ResponseDTO } from 'src/app/models/responseDTO.model';
-import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
-import { JornadaService } from 'src/app/services/jornada/jornada.service';
+
 
 
 @Component({
@@ -12,11 +10,16 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 })
 export class ListaJornadasComponent {
 
+  /* Inputs & Outputs*/
+
+  //si es true, renderiza los datos minimos en el contexto de un empleado
   @Input() minimalListActive: Boolean = false;
 
   @Input() listJornadas!: JornadaResponseModel[];
 
+  /*Columnas para table material*/
   nombreColumnas: string[] = ['id', 'nroDocumento', 'nombreCompleto', 'fecha', 'concepto', 'hsTrabajadas'];
+  /*Columnas para table material minimal*/
   nombreColumnasMinimal: string[] = ['fecha', 'concepto', 'hsTrabajadas'];
 
   loading: boolean =  true;
@@ -25,11 +28,7 @@ export class ListaJornadasComponent {
 
   ngOnInit(): void {
 
-    this.listJornadas = this.listJornadas
     this.loading = false;
     
   }
-
-  //Se evalua si el empleado tiene jornadas
-  
 }

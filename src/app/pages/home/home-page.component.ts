@@ -29,6 +29,8 @@ export class HomePageComponent implements OnInit{
     this.getAllJornadas()
   }
 
+  /**Llamados API */
+
   getAllEmpleados(){
     this.empleadoService.getAllEmpleados().subscribe({
       next:(responseDTO: ResponseDTO) => {
@@ -78,6 +80,8 @@ export class HomePageComponent implements OnInit{
     this.listEmpleados = this.listEmpleados.filter(empleado => empleado.id !== id);
     this.loading = false;
   }
+
+   /**Otras funciones */
 
   navigationEmpleado(){
     this.router.navigate(['/empleado/'])

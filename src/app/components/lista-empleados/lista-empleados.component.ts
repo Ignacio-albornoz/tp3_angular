@@ -1,10 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
-import { ResponseDTO } from 'src/app/models/responseDTO.model';
 import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
-import { EmpleadoService } from 'src/app/services/empleado/empleado.service';
-import { ErrorMessageService } from 'src/app/services/error-message/error-message.service';
-import { JornadaService } from 'src/app/services/jornada/jornada.service';
+
 
 
 @Component({
@@ -14,13 +11,15 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 })
 export class ListaEmpleadosComponent {
 
+  //Se reciben los empleados del padre
   @Input() listEmpleados: EmpleadoModel[] = [];
+
   loading: boolean =  true;
   idEmpleado: number = 0;
   nroDocumento: number = 0;
   nombreColumnas: string[] = ['id', 'nroDocumento', 'nombre', 'email', 'fechaNacimiento', 'fechaIngreso', 'fechaCreacion', 'action' ];
 
-  constructor( private dialogoService: DialogosService, private errorMessageService: ErrorMessageService){}
+  constructor( private dialogoService: DialogosService){}
 
   borrarEmpleadoDeLista() {
     this.dialogoService.openDialog(this.idEmpleado, this.nroDocumento)

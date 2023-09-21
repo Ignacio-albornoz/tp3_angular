@@ -32,6 +32,8 @@ export class EmpleadoPageComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
+    //Captura el params id
     this.route.paramMap.subscribe(params =>{
       let idNumber = params.get('id')
       idNumber ? this.empleadoId = parseInt(idNumber) : null

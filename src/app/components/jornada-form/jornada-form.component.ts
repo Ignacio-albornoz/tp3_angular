@@ -15,19 +15,22 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 })
 export class JornadaFormComponent implements OnInit{
 
+  /* Inputs & Outputs*/
+
   @Input() empleadoId: number = 0;
 
+
+  //Se avisa al padre cuando se carga una jornada
   @Output() seAgregoJornada = new EventEmitter<JornadaResponseModel>()
 
   jornadaRequest!: JornadaRequestModel;
+  jornadaForm!: FormGroup
 
-  //ConceptoId selector
+  //ConceptoId seleccionado
   conceptoIdSelected = 1;
   disable: boolean = false;
-
   hsTrabajadasMax: number = 8;
   hsTrabajadasMin: number = 6;
-
 
   //Validador DataPicker
   maxDate: Date;
@@ -40,6 +43,7 @@ export class JornadaFormComponent implements OnInit{
 
   }
 
+  //Se encarga de definir horas maximas y minimas segun el concepto
   onConceptoSelected(event: any){
     this.conceptoIdSelected = event.value;
 
@@ -79,17 +83,17 @@ export class JornadaFormComponent implements OnInit{
     
   }
 
-  jornadaForm!: FormGroup
-
   ngOnInit(): void {
     
+    //formulario por defecto
     this.jornadaForm = this.formBuilder.group({
       idEmpleado: [this.empleadoId, [Validators.required, Validators.min(1)]], 
       fecha: ['', [Validators.required]],
       hsTrabajadas:  ['', [Validators.required, Validators.min(this.hsTrabajadasMin), Validators.max(this.hsTrabajadasMax)]],
     });
-
   }
+
+  /**Llamados API */
 
   onSubmit() {
     this.jornadaRequest = this.jornadaForm.value;

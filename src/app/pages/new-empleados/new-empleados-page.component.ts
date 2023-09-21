@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-empleados-page.component.css']
 })
 export class NewEmpleadosPageComponent {
-
+  //Renderiza el formulario para crear usuario
 }

@@ -17,10 +17,10 @@ import { ErrorMessageService } from 'src/app/services/error-message/error-messag
 })
 export class EmpleadoFormComponent implements OnInit{
 
+  
   empleadoCreateDto!: CreateAndUpdateEmpleadoDTOModel;
 
-  @Input() update: boolean = false;
-
+  //Recibe el empleado seleccionado o inicializa vacio
   @Input() empleado: EmpleadoModel = {
     id: 0,
     nroDocumento: 0,
@@ -31,6 +31,8 @@ export class EmpleadoFormComponent implements OnInit{
     fechaIngreso: new Date,
     fechaCreacion: new Date, 
   };
+
+  empleadoForm!: FormGroup
 
   //Validador DataPicker
   maxDate: Date;
@@ -43,6 +45,7 @@ export class EmpleadoFormComponent implements OnInit{
     private empleadoService: EmpleadoService,
     private errorMessageService: ErrorMessageService){
 
+    //Valida edad
     const fechaActual = Date.now();
     const TIMPESTAMP_18_YEAR = 568000253700;
     //Se le resta 18 anios a la fecha actual
@@ -51,10 +54,12 @@ export class EmpleadoFormComponent implements OnInit{
     this.maxDate = new Date(fechaActual);
   }
 
-  empleadoForm!: FormGroup
+
 
   ngOnInit(): void {
 
+
+    //Inicializa el formulario con sus validaciones
     this.empleadoForm = this.formBuilder.group({
       nroDocumento: ['', [Validators.required, Validators.min(900000)], [this.nroDocumentoExistsValidator.bind(this)]], 
       nombre: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]], 
@@ -65,6 +70,9 @@ export class EmpleadoFormComponent implements OnInit{
     });
   }
 
+  /**Llamados API */
+
+  //Captura el empleado submit y crea un empleado
   onSubmit() {
     this.empleadoCreateDto = this.empleadoForm.value;
     this.empleadoService.createEmpleado(this.empleadoCreateDto)
@@ -72,23 +80,19 @@ export class EmpleadoFormComponent implements OnInit{
       next:(responseDTO: ResponseDTO) => {
 
         if(responseDTO.isSuccess){
-          
-
           this.errorMessageService.ErrorMessage('Empleado creado!')
-
-          
         }
         else {
           responseDTO.message.map(message => message ? this.errorMessageService.ErrorMessage(message) : null )
         }
       },
-
       error:(e) => {
         this.errorMessageService.ErrorMessage(e.error.message)
       }
     })
   }
   
+  //Valida con el input si el documento ya existe
   nroDocumentoExistsValidator(control: AbstractControl): Observable<ValidationErrors | null> {
 
     return this.empleadoService
@@ -96,6 +100,7 @@ export class EmpleadoFormComponent implements OnInit{
      .pipe( map(exists => exists.response ? { nroDocumentoExists: true} : null) ); 
   }
   
+  //Valida con el input si el email ya existe
   emailExistsValidator(control: AbstractControl): Observable<ValidationErrors | null> {
 
     return this.empleadoService

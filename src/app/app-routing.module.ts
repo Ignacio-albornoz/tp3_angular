@@ -6,6 +6,8 @@ import { EmpleadoPageComponent } from "./pages/empleado/empleado-page.component"
 import { JornadaPageComponent } from "./pages/jornada/jornada-page.component";
 import { NewEmpleadosPageComponent } from "./pages/new-empleados/new-empleados-page.component";
 
+//Routing
+
 const routes: Routes = [
     {
         path: 'home', component: HomePageComponent

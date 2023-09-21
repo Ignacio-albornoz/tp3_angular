@@ -19,6 +19,8 @@ export class JornadaService {
     private http: HttpClient
   ) { }
 
+  /**Llamados API */
+
   getAllJornadas(): Observable<ResponseDTO>{
     return this.http.get<ResponseDTO>(`${this.API_URL}/jornada`);
   }

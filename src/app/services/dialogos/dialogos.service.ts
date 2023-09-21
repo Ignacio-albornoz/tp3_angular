@@ -13,6 +13,8 @@ import { ResponseDTO } from 'src/app/models/responseDTO.model';
 })
 export class DialogosService {
 
+  /**Servicio que confirma si se quiere borrar un empleado a traves de un dialogo material */
+
   tieneJornadas: boolean = true;
   empleadoId: number = 0;
   nroDocumento: number = 0;
@@ -24,6 +26,8 @@ export class DialogosService {
     private jornadaService: JornadaService,
       
   ) {}
+
+  /**Llamados API */
 
   deleteEmpleado(empleadoId: number){
     
@@ -44,6 +48,22 @@ export class DialogosService {
       }
     })
   }
+
+  //Validad que el empleado no tenga una jornada relacionada
+  hasJornadas(){
+    this.jornadaService.hasJornada(this.nroDocumento).subscribe({
+      next:(responseDTO: ResponseDTO) => {
+        this.tieneJornadas = responseDTO.response;
+      },
+
+      error:(e) => {
+        this.errorMessageService.ErrorMessage(e.error.message);
+        
+      }
+    })
+  }
+
+  /**Otras funciones */
 
   openDialog(empleadoId: number, nroDocumento: number) {
 
@@ -68,21 +88,6 @@ export class DialogosService {
       }
     });
   }
-
-  hasJornadas(){
-    this.jornadaService.hasJornada(this.nroDocumento).subscribe({
-      next:(responseDTO: ResponseDTO) => {
-        this.tieneJornadas = responseDTO.response;
-      },
-
-      error:(e) => {
-        this.errorMessageService.ErrorMessage(e.error.message);
-        
-      }
-    })
-  }
-
-
 }
 
 

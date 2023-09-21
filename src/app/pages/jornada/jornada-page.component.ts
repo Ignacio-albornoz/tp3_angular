@@ -13,9 +13,7 @@ import { JornadaService } from 'src/app/services/jornada/jornada.service';
 export class JornadaPageComponent {
 
   listJornadas: JornadaResponseModel[] = [];
-
   loading: boolean = true;
-
   empleadoId: number = 0;
 
   constructor(
@@ -35,6 +33,8 @@ export class JornadaPageComponent {
 
   }
   
+  /**Llamados API */
+
   getAllJornadas(){
     this.jornadaService.getAllJornadas().subscribe({
       next:(responseDTO: ResponseDTO) => {
@@ -57,6 +57,7 @@ export class JornadaPageComponent {
     })
   }
 
+  /** Deberia actualizar la lista luego que se cree una jornada. Pero no funciona */
   handleAddJornada(event: any){
     this.loading = true;
     this.listJornadas.push(event);
