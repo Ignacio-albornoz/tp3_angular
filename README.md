@@ -1,27 +1,60 @@
 # Tp3Api
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.9.
+Aplicacion realizada en Angular 15, con backend Springboot.
 
-## Development server
+Estructurado en paginas,
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+por las cuales se puede navegar a traves de los iconos en el navbar.
 
-## Code scaffolding
+* Home: pagina donde se listan los empleados, jornadas y conceptos(siempre que haya creadas).
+  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+* Lista de empleados: Al hacer click en cualquier empleado lo llevara a su card, donde podra eliminarlo o editartarlo. (Funcionalidad que se repite en el menu)
 
-## Build
+  Ademas podra ver las jornadas relacionadas al empleado y agregar mas de ser requerido.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+  Las demas listas son solo informativas.
 
-## Running unit tests
+  
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* /empleado: Encontrara el formulario para crear un nuevo usario, se accede con el icono, en el navbar. Implementa todas las validaciones que se requirieron en el backend.
 
-## Running end-to-end tests
+  
+  
+* /empleado/id: Detalles del empleado, se puede acceder haciendo click al usuario en la lista de home.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  
 
-## Further help
+* jornadas:  Formulario para crear una nueva jornada, con todas las validaciones Implementa todas las validaciones que se requirieron en el backend.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  
+
+* /jornada/id:  Se accede desde la card del empleado y el /id pertece al empleado. Esto permite evitar se ponga el Id que puede no conocerse.
+
+  existe una validacion extra, que no dejara borrar un empleado que tenga relacion con una jornada.
+
+  dialogo de confirmacion para borrar empleado (Esta logica se me complico un poco y se detalla en el servicio src>app>services>dialogos>dialogos.service). Funciona mejor dentro de la card del empleado.
+
+  Me esforce mucho en mantener un flujo de trabajo limpio con git, con las recomendaciones dadas en el lab **ver historial de commits en rama developtmen**
+
+# Backend
+
+Del lado del backend hice pocas modificaciones, las siguientes:
+
+Cree existsEmail y nroDocumento, para recibir en tiempo real la validacion de ambos campos en el formulario de creacion
+
+ademas agregue @CrossOrigin(origins = "http://localhost:4200") a todos los controladores, por el error de CORS.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
