@@ -43,6 +43,6 @@ export class EmpleadoService {
   }
 
   existsByNroDocumento(nroDocumento: number): Observable<ResponseDTO>{
-    return this.http.get<ResponseDTO>(`${this.API_URL}/exists/nroDocumento/${nroDocumento}`)
+    return this.http.get<ResponseDTO>(`${this.API_URL}/empleado/exists/nroDocumento/${nroDocumento}`)
   }
 }
