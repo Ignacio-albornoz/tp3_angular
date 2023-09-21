@@ -9,7 +9,7 @@ por las cuales se puede navegar a traves de los iconos en el navbar.
 * Home: pagina donde se listan los empleados, jornadas y conceptos(siempre que haya creadas).
   
 
-* Lista de empleados: Al hacer click en cualquier empleado lo llevara a su card, donde podra eliminarlo o editartarlo. (Funcionalidad que se repite en el menu)
+* Lista de empleados: Al hacer click en cualquier empleado lo llevara a su card, donde podra eliminarlo o editar.
 
   Ademas podra ver las jornadas relacionadas al empleado y agregar mas de ser requerido.
 
