@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 
 @Component({
@@ -19,18 +20,23 @@ export class EmpleadoMenuComponent implements OnInit{
 
   menuIconColor: String = 'menu-icon';
 
-  constructor(private dialogoService: DialogosService){}
+  constructor(
+    private dialogoService: DialogosService,
+    private router: Router,
+    ){}
 
   ngOnInit(): void {
     this.colorWhite ? this.menuIconColor = 'menu-icon-white' : 'menu-icon';
   }
 
   deleteEmpleado(){
-
     this.dialogoService.openDialog(this.idEmpleado, this.nroDocumento)
 
     this.handlerClickDelete.emit();
- 
+  }
+
+  navigationEmpleado(){
+    this.router.navigate(['/empleado/', this.idEmpleado])
   }
 
 }
