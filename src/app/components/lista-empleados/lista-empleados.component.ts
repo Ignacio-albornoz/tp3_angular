@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { EmpleadoModel } from 'src/app/models/empleado.model';
 import { DialogosService } from 'src/app/services/dialogos/dialogos.service';
 
